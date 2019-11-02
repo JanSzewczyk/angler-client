@@ -1,0 +1,75 @@
+.Input {
+  /* width: 100%; */
+  position: relative;
+}
+
+.InputElement {
+  width: 100%;
+  padding: 8px 0;
+  font-size: 16px;
+  color: #f4f4f4;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+  border: none;
+  border-bottom: 1px solid #f4f4f4;
+  outline: none;
+  background: transparent;
+}
+
+.Label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  color: #f4f4f4;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.InputElement:focus ~ .Label {
+  top: -24px;
+  left: 0;
+  color: #27ae60;
+  font-size: 14px;
+}
+
+.UpPosition {
+  top: -18px;
+  left: 0;
+  color: #27ae60;
+  font-size: 14px;
+}
+
+.Invalid {
+  border-bottom: 1px solid red;
+}
+
+/* input[type="date" i]::-webkit-datetime-edit-text {
+    -webkit-appearance: none;
+    display: none;
+  }
+  input[type="date" i]::-webkit-datetime-edit-month-field {
+    -webkit-appearance: none;
+    display: none;
+  }
+  input[type="date" i]::-webkit-datetime-edit-day-field {
+    -webkit-appearance: none;
+    display: none;
+  }
+  input[type="date" i]::-webkit-datetime-edit-year-field {
+    -webkit-appearance: none;
+    display: none;
+  } */
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="date" i] {
+  cursor: text;
+}

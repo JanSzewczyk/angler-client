@@ -1,0 +1,14 @@
+.Notification {
+  background-color: #444444;
+  color: #f4f4f4;
+  padding: 1rem;
+  position: absolute;
+  top: -100px;
+  right: 1rem;
+  z-index: 999;
+  transition: top 0.5s ease;
+}
+
+.Notification:hover {
+  cursor: pointer;
+}

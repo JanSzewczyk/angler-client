@@ -1,0 +1,17 @@
+.Signup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Signup h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.Signup form {
+  width: 80%;
+  padding-top: 2rem;
+}

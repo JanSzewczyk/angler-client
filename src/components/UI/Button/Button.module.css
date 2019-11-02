@@ -1,0 +1,162 @@
+/* .Button {
+  width: 100%;
+  height: 2.7rem;
+  border: 1px solid #27ae60;
+  border-radius: 2px;
+  font-weight: 500;
+  background: none;
+  padding: 0.7rem 1rem;
+  font-size: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.8s;
+  position: relative;
+  overflow: hidden;
+}
+
+.Btn1,
+.Btn2 {
+  color: #27ae60;
+}
+.Btn3,
+.Btn4 {
+  z-index: 3;
+  color: #fff;
+}
+.Btn1:hover,
+.Btn2:hover {
+  z-index: 3;
+  color: #fff;
+}
+.Btn3:hover,
+.Btn4:hover {
+  z-index: 3;
+  color: #27ae60;
+}
+.Button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: #27ae60;
+  z-index: -1;
+  transition: 0.8s;
+}
+.Btn1::before,
+.Btn3::before {
+  top: 0;
+  border-radius: 0 0 50% 50%;
+}
+.Btn2::before,
+.Btn4::before {
+  bottom: 0;
+  border-radius: 50% 50% 0 0;
+}
+.Btn3::before,
+.Btn4::before {
+  height: 200%;
+}
+.Btn1:hover::before,
+.Btn2:hover::before {
+  height: 180%;
+}
+.Btn3:hover::before,
+.Btn4:hover::before {
+  height: 0%;
+} */
+
+/* Sign in button */
+.SignInButton {
+  width: 100%;
+  height: 2.7rem;
+  border: 1px solid #27ae60;
+  border-radius: 2px;
+  font-weight: 500;
+  background: none;
+  padding: 0.7rem 1rem;
+  font-size: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.8s;
+  position: relative;
+  overflow: hidden;
+}
+.SignInButton:disabled {
+  cursor: default;
+}
+.SignInButton::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: #27ae60;
+  z-index: -1;
+  transition: 0.8s;
+}
+.Btn3 {
+  z-index: 3;
+  color: #f4f4f4;
+}
+.Btn3:hover {
+  z-index: 3;
+  color: #27ae60;
+}
+.Btn3::before {
+  top: 0;
+  border-radius: 0 0 50% 50%;
+}
+.Btn3::before {
+  height: 200%;
+}
+.Btn3:hover::before {
+  height: 0%;
+}
+
+/* Sign up button */
+.SignUpButton {
+  width: 100%;
+  height: 2.7rem;
+  border: 1px solid #e67e22;
+  border-radius: 2px;
+  font-weight: 500;
+  background: none;
+  padding: 0.7rem 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.8s;
+  position: relative;
+  overflow: hidden;
+}
+.SignUpButton:disabled {
+  cursor: default;
+}
+.SignUpButton::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: #e67e22;
+  z-index: -1;
+  transition: 0.8s;
+}
+.Btn2 {
+  z-index: 3;
+  color: #e67e22;
+}
+.Btn2:hover {
+  z-index: 3;
+  color: #f4f4f4;
+}
+.Btn2::before {
+  bottom: 0;
+  border-radius: 50% 50% 0 0;
+}
+.Btn2:hover::before {
+  height: 180%;
+}

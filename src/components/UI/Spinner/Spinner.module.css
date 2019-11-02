@@ -1,0 +1,72 @@
+.Loader {
+  margin: 55px;
+  position: relative;
+  width: 6em;
+  height: 6em;
+}
+
+.First,
+.Second,
+.Third {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border-top: 3px solid whitesmoke;
+  border: 3px solid transparent;
+  transform-origin: left top;
+  border-top: 3px solid whitesmoke;
+  border-bottom: 3px solid whitesmoke;
+  border-left: 3px solid whitesmoke;
+}
+
+.First {
+  height: 2em;
+  width: 2em;
+  animation: rotate1 1.5s linear infinite;
+}
+
+.Second {
+  height: 4em;
+  width: 4em;
+  border-right: 3px solid whitesmoke;
+  border-left: 3px solid transparent;
+  animation: rotate2 1.5s linear infinite;
+}
+
+.Third {
+  height: 6em;
+  width: 6em;
+  animation: rotate3 1.5s linear infinite;
+}
+
+@keyframes rotate1 {
+  0% {
+    transform: rotate(0deg) translate(-50%, -50%);
+  }
+
+  100% {
+    transform: rotate(360deg) translate(-50%, -50%);
+  }
+}
+
+@keyframes rotate3 {
+  0% {
+    transform: rotate(0deg) translate(-50%, -50%);
+  }
+
+  100% {
+    transform: rotate(360deg) translate(-50%, -50%);
+  }
+}
+
+@keyframes rotate2 {
+  0% {
+    transform: rotate(0deg) translate(-50%, -50%);
+  }
+
+  100% {
+    transform: rotate(-360deg) translate(-50%, -50%);
+  }
+}

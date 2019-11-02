@@ -1,0 +1,98 @@
+h1 {
+  font-weight: 300;
+}
+
+.Layout {
+  font-weight: 300;
+  background: #006600;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+}
+
+.Left {
+  -webkit-flex: 1 1 auto;
+  overflow-y: auto;
+  min-height: 100px;
+
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  height: 100vh;
+}
+
+/* todo content */
+.Content {
+  width: 80%;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  margin-bottom: 8px;
+  padding: 16px 0;
+}
+
+.Left nav {
+  width: 60%;
+}
+
+.Right {
+  flex: 1;
+}
+
+/* Showcase */
+.Showcase {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("../../assets/screens/mainView.jpg") no-repeat center center /
+    cover;
+  height: 100vh;
+  text-align: center;
+}
+
+.Showcase .ShowcaseText {
+  font-size: 3rem;
+  width: 100%;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+/* Media Queries */
+@media (min-width: 1200px) {
+  .Left {
+    flex: 4;
+  }
+
+  .Right {
+    flex: 6;
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    overflow: auto;
+  }
+
+  .Right {
+    display: none;
+  }
+
+  .Reft {
+    justify-content: start;
+    margin-top: 4vh;
+  }
+
+  /* #signin .logo {
+    margin-bottom: 2vh;
+  }
+
+  #signin .text-input {
+    margin-bottom: 0.7rem;
+  }
+
+  #main-footer {
+    padding-top: 1rem;
+  } */
+}
