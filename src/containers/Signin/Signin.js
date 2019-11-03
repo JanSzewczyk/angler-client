@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import ReactTimeout from "react-timeout";
-
 import axios from "../../axios-home";
+
 import Aux from "../../hoc/Auxiliary/Auxiliary";
 import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
@@ -69,9 +69,9 @@ class Signin extends Component {
     axios
       .post(
         "/oauth/token?grant_type=password&username=" +
-          this.state.loginForm.email.value +
-          "&password=" +
-          this.state.loginForm.password.value,
+        this.state.loginForm.email.value +
+        "&password=" +
+        this.state.loginForm.password.value,
         {},
         {
           headers: {
@@ -81,6 +81,7 @@ class Signin extends Component {
         }
       )
       .then(res => {
+        console.log(res);
         this.setState({
           access: true
         });
@@ -91,14 +92,15 @@ class Signin extends Component {
         }, 3000);
       })
       .catch(err => {
-        const status = err.response.status;
-
+        console.log("hrlloooo");
         let errmsg = "Unknown problem, sorry :(";
-        if (status === 401) {
-          errmsg = "Valid mail :(";
-        }
-        if (status === 400) {
-          errmsg = "Valid password :(";
+        if (err.response) {
+          if (err.response.status === 401) {
+            errmsg = "Invalid mail :(";
+          }
+          if (err.response.status === 400) {
+            errmsg = "Invalid password :(";
+          }
         }
 
         this.setState({
@@ -204,8 +206,8 @@ class Signin extends Component {
                 loading
               </Aux>
             ) : (
-              <h1>WELCOME</h1>
-            )}
+                <h1>WELCOME</h1>
+              )}
           </Backdrop>
         ) : null}
         <div className={classes.Signin}>
