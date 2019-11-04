@@ -1,11 +1,16 @@
 import React, { Component } from "react";
-import axios from "../../axios-home";
+import { connect } from "react-redux";
 
+import Aux from "../../hoc/Auxiliary/Auxiliary";
 import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
 import ValidMsg from "../../components/UI/ValidMsg/ValidMsg";
+import Spinner from "../../components/UI/Spinner/Spinner";
+
+import * as actions from "../../store/actions/index";
 
 import classes from "./Signup.module.css";
+import confirm from "../../assets/icons/confirm.png"
 
 class Signup extends Component {
   state = {
@@ -111,24 +116,7 @@ class Signup extends Component {
         data[key] = this.state.signupForm[key].value;
     }
 
-    axios
-      .post("/signup", data)
-      .then(res => {
-        console.log("działa");
-        console.log(res);
-      })
-      .catch(err => {
-        let errorMessage = "error";
-
-        // err.response.data.message
-
-        this.setState({
-          error: true,
-          errorMessage: errorMessage
-        });
-      });
-
-    console.log(data);
+    this.props.onSignup(data);
   };
 
   checkValidity(value, rules) {
@@ -166,8 +154,6 @@ class Signup extends Component {
       ...updatedSignupForm[inputIdentifier]
     };
 
-    console.log(event.target.value);
-
     updatedFormElement.value = event.target.value;
 
     updatedFormElement.valid = this.checkValidity(
@@ -186,8 +172,7 @@ class Signup extends Component {
 
     this.setState({
       signupForm: updatedSignupForm,
-      formIsValid: formIsValid,
-      error: false
+      formIsValid: formIsValid
     });
   };
 
@@ -201,38 +186,70 @@ class Signup extends Component {
     }
 
     let form = (
-      <form onSubmit={this.signupHandler}>
-        {formElementArray.map(formElement => (
-          <Input
-            key={formElement.id}
-            label={formElement.config.label}
-            elementType={formElement.config.elementType}
-            elementConfig={formElement.config.elementConfig}
-            value={formElement.config.value}
-            invalid={!formElement.config.valid}
-            shouldValidate={formElement.config.validation}
-            touched={formElement.config.touched}
-            changed={event => this.inputChangedHandler(event, formElement.id)}
-          />
-        ))}
-        <ValidMsg show={this.state.error} message={this.state.errorMessage} />
-        <Button
-          btnStyle={"SignUpButton"}
-          btnType={"Btn2"}
-          disabled={!this.state.formIsValid}
-        >
-          Sign up
+      <Aux>
+        <h1>Join to us</h1>
+        <form onSubmit={this.signupHandler}>
+          {formElementArray.map(formElement => (
+            <Input
+              key={formElement.id}
+              label={formElement.config.label}
+              elementType={formElement.config.elementType}
+              elementConfig={formElement.config.elementConfig}
+              value={formElement.config.value}
+              invalid={!formElement.config.valid}
+              shouldValidate={formElement.config.validation}
+              touched={formElement.config.touched}
+              changed={event => this.inputChangedHandler(event, formElement.id)}
+            />
+          ))}
+          <ValidMsg show={this.props.error} message={this.props.errorMessage} />
+          <Button
+            btnStyle={"SignUpButton"}
+            btnType={"Btn2"}
+            disabled={!this.state.formIsValid}
+          >
+            Sign up
         </Button>
-      </form>
+        </form>
+      </Aux>
     );
 
+    if (this.props.loading) {
+      form = (
+        <Aux>
+          <Spinner />
+          <h1>Wait...</h1>
+        </Aux>)
+    }
+
+    if (this.props.confirmation) {
+      form = (<Aux>
+        <img src={confirm} alt={"confirm"} />
+        <h1>Congratulations</h1>
+        Now you can login.
+      </Aux>)
+    }
     return (
       <div className={classes.Signup}>
-        <h1>Join to us</h1>
         {form}
       </div>
     );
   }
 }
 
-export default Signup;
+const mapStateToProps = (state) => {
+  return {
+    confirmation: state.signup.confirmation,
+    loading: state.signup.loading,
+    error: state.signup.error,
+    errorMessage: state.signup.errorMessage
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSignup: (data) => dispatch(actions.signup(data))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

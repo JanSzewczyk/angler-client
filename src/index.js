@@ -11,11 +11,13 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 import authReducer from "./store/reducers/auth";
+import signupReducer from "./store/reducers/sign-up"
 
 import "./index.css";
 
 const rootReducers = combineReducers({
-  auth: authReducer
+  auth: authReducer,
+  signup: signupReducer
 });
 
 const store = createStore(

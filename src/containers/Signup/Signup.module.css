@@ -7,11 +7,16 @@
 
 .Signup h1 {
   margin: 0;
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 700;
 }
 
 .Signup form {
   width: 80%;
   padding-top: 2rem;
+}
+
+.Signup img {
+  width: 60%;
+  margin: 8px;
 }

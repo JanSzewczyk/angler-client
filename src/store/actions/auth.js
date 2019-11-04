@@ -75,9 +75,6 @@ export const auth = (email, password) => {
 				config
 			)
 			.then(response => {
-				console.log("Redux auth :")
-				console.log(response);
-
 				const expirationDate = new Date(
 					new Date().getTime() + response.data.expires_in * 1000
 				);
