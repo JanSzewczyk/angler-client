@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import ReactTimeout from "react-timeout";
-import axios from "../../axios-home";
+//import ReactTimeout from "react-timeout";
+import { connect } from "react-redux";
 
 import Aux from "../../hoc/Auxiliary/Auxiliary";
 import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
-import Spinner from "../../components/UI/Spinner/Spinner";
-import Backdrop from "../../components/UI/Backdrop/Backdrop";
 import ValidMsg from "../../components/UI/ValidMsg/ValidMsg";
+import Loading from "../../components/Loading/Loading";
+
+import * as actions from "../../store/actions/index"
 
 import classes from "./Signin.module.css";
 
@@ -45,20 +46,14 @@ class Signin extends Component {
       }
     },
     formIsValid: false,
-    loading: false,
-    access: false,
-    error: false,
-    errorMessage: ""
+    // loading: false,
+    // access: false,
+    // error: false,
+    // errorMessage: ""
   };
 
   loginHandler = event => {
     event.preventDefault();
-
-    this.setState({
-      loading: true,
-      access: false,
-      error: false
-    });
 
     // this.props.setTimeout(() => {
     //   this.setState({
@@ -66,49 +61,8 @@ class Signin extends Component {
     //   });
     // }, 3000);
 
-    axios
-      .post(
-        "/oauth/token?grant_type=password&username=" +
-        this.state.loginForm.email.value +
-        "&password=" +
-        this.state.loginForm.password.value,
-        {},
-        {
-          headers: {
-            authorization:
-              "Basic ZmlzaGxvZ2NsaWVudGlkOlptbHphR3h2WnkxaVlXTnJaVzVrTFdGd2NHeHBZMkYwYVc5dURRbw=="
-          }
-        }
-      )
-      .then(res => {
-        console.log(res);
-        this.setState({
-          access: true
-        });
-        this.props.setTimeout(() => {
-          this.setState({
-            loading: false
-          });
-        }, 3000);
-      })
-      .catch(err => {
-        console.log("hrlloooo");
-        let errmsg = "Unknown problem, sorry :(";
-        if (err.response) {
-          if (err.response.status === 401) {
-            errmsg = "Invalid mail :(";
-          }
-          if (err.response.status === 400) {
-            errmsg = "Invalid password :(";
-          }
-        }
-
-        this.setState({
-          loading: false,
-          error: true,
-          errorMessage: errmsg
-        });
-      });
+    console.log("eloasdfsad");
+    this.props.onAuth(this.state.loginForm.email.value, this.state.loginForm.password.value);
   };
 
   checkValidity(value, rules) {
@@ -184,7 +138,7 @@ class Signin extends Component {
           />
         ))}
 
-        <ValidMsg show={this.state.error} message={this.state.errorMessage} />
+        <ValidMsg show={this.props.error} message={this.props.errorMessage} />
 
         <Button
           btnStyle={"SignInButton"}
@@ -198,18 +152,7 @@ class Signin extends Component {
 
     return (
       <Aux>
-        {this.state.loading ? (
-          <Backdrop>
-            {!this.state.access ? (
-              <Aux>
-                <Spinner />
-                loading
-              </Aux>
-            ) : (
-                <h1>WELCOME</h1>
-              )}
-          </Backdrop>
-        ) : null}
+        <Loading loading={this.props.loading} access={this.props.access} />
         <div className={classes.Signin}>
           <h1>Login</h1>
           {form}
@@ -239,4 +182,19 @@ class Signin extends Component {
   }
 }
 
-export default ReactTimeout(Signin);
+const mapStateToProps = (state) => {
+  return {
+    access: state.auth.access,
+    loading: state.auth.loading,
+    error: state.auth.error,
+    errorMessage: state.auth.errorMessage
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAuth: (email, password) => dispatch(actions.auth(email, password))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signin);
