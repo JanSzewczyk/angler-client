@@ -45,11 +45,7 @@ class Signin extends Component {
         touched: false
       }
     },
-    formIsValid: false,
-    // loading: false,
-    // access: false,
-    // error: false,
-    // errorMessage: ""
+    formIsValid: false
   };
 
   loginHandler = event => {

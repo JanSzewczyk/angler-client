@@ -1,0 +1,52 @@
+.Header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #0c0c0c;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  color: #f4f4f4;
+  height: 48px;
+  font-weight: 100;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.HeaderContainer {
+  cursor: pointer;
+  -ms-flex-item-align: center;
+  align-self: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.Logo {
+  margin-right: 16px;
+}
+.Logo a {
+  color: #f4f4f4;
+}
+
+.Title {
+  margin-left: 4px;
+  font-weight: 500;
+}
+
+.User {
+  margin-right: 0;
+}
+.User:hover {
+  opacity: 0.8;
+}
+.User:focus {
+  outline: none;
+}

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
+
 import { connect } from "react-redux";
+import * as actions from "./store/actions/index";
 
 import HomePage from "./hoc/HomePage/HomePage";
 import Signin from "./containers/Signin/Signin";
@@ -8,15 +10,10 @@ import Signup from "./containers/Signup/Signup";
 import Recover from "./containers/Recover/Recover";
 import NotFound from "./components/NotFound/NotFound";
 import AppPage from "./hoc/AppPage/AppPage";
+import Logout from "./containers/Signin/Logout/Logout"
 import Aux from "./hoc/Auxiliary/Auxiliary";
 
-import * as actions from "./store/actions/index";
-
 class App extends Component {
-  state = {
-    loggin: false
-  };
-
   componentDidMount() {
     this.props.onTryAutoSignup();
   }
@@ -24,8 +21,13 @@ class App extends Component {
   render() {
     return (
       <Aux>
-        {this.props.isAuthenticated ? (
-          <AppPage></AppPage>
+        {/* To od ew */}
+        {!this.props.isAuthenticated ? (
+          <AppPage>
+            <Switch>
+              <Route path="/logout" component={Logout} />
+            </Switch>
+          </AppPage>
         ) : (
             <HomePage>
               <Switch>

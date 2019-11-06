@@ -9,7 +9,6 @@ const input = props => {
   const labelClasses = [classes.Label];
 
   if (props.invalid && props.shouldValidate && props.touched) {
-    console.log("Valid ...");
     inputClasses.push(classes.Invalid);
   }
 

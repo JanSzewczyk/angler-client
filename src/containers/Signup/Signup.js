@@ -89,8 +89,8 @@ class Signup extends Component {
       birthDate: {
         elementType: "input",
         elementConfig: {
-          type: "date"
-          // placeholder: "Date"
+          type: "date",
+          placeholder: "dateu"
         },
         label: "Date of birth",
         value: "",
@@ -233,7 +233,7 @@ class Signup extends Component {
       <div className={classes.Signup}>
         {form}
       </div>
-    );
+    )
   }
 }
 
