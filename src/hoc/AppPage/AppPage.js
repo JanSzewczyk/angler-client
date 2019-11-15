@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header";
 import UserPanel from "../../components/UserPanel/UserPanel";
 import Toolbar from "../../components/Toolbar/Toolbar";
 import Navbar from "../../components/Navbar/Navbar";
+import Temp from "../../containers/Temp/Temp";
 import Aux from "../Auxiliary/Auxiliary";
 
 import classes from "./AppPage.module.css";
@@ -37,9 +38,10 @@ class AppPage extends Component {
             <Toolbar showUserPanel={this.showNavbarHandler} />
             <div className={classes.AppBody}>
               <Navbar show={this.state.showNavbar} />
-              <div className={classes.AppContent}>
+              {/* <div className={classes.AppContent}>
                 {this.props.children}
-              </div>
+              </div> */}
+              <Temp />
             </div>
           </div>
         </main>

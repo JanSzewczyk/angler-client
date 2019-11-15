@@ -8,6 +8,15 @@ const initialState = {
   errorMessage: ""
 };
 
+const signupInit = (state, action) => {
+  return updateObject(state, {
+    confirmation: false,
+    loading: false,
+    error: false,
+    errorMessage: ""
+  })
+}
+
 const signupStart = (state, action) => {
   return updateObject(state, {
     loading: true,
@@ -34,6 +43,8 @@ const signupFail = (state, action) => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.SIGNUP_INIT:
+      return signupInit(state, action);
     case actionTypes.SIGNUP_START:
       return signupStart(state, action);
     case actionTypes.SIGNUP_SUCCESS:

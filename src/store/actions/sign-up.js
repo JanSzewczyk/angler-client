@@ -2,6 +2,12 @@ import axios from "../../axios-home";
 
 import * as actionTypes from "./actionTypes";
 
+export const signupInit = () => {
+  return {
+    type: actionTypes.SIGNUP_INIT
+  }
+}
+
 export const signupStart = () => {
   return {
     type: actionTypes.SIGNUP_START

@@ -88,7 +88,7 @@ export const auth = (email, password) => {
 				let errorMessage = "Unknown problem, sorry :(";
 				if (err.response) {
 					if (err.response.status === 401) {
-						errorMessage = "Invalid mail :(";
+						errorMessage = err.response.data.error_description;
 					}
 					if (err.response.status === 400) {
 						errorMessage = "Invalid password :(";

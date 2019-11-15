@@ -11,6 +11,8 @@ import Recover from "./containers/Recover/Recover";
 import NotFound from "./components/NotFound/NotFound";
 import AppPage from "./hoc/AppPage/AppPage";
 import Logout from "./containers/Signin/Logout/Logout"
+import Confirmation from "./containers/Signup/Confirmation/Confirmation";
+
 import Aux from "./hoc/Auxiliary/Auxiliary";
 
 class App extends Component {
@@ -21,7 +23,6 @@ class App extends Component {
   render() {
     return (
       <Aux>
-        {/* To od ew */}
         {!this.props.isAuthenticated ? (
           <AppPage>
             <Switch>
@@ -33,6 +34,7 @@ class App extends Component {
               <Switch>
                 <Route path="/signup" component={Signup} />
                 <Route path="/recover" component={Recover} />
+                <Route path="/confirm" component={Confirmation} />
                 <Route path="/" exact component={Signin} />
                 <Route component={NotFound} />
               </Switch>

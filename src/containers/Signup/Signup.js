@@ -90,7 +90,7 @@ class Signup extends Component {
         elementType: "input",
         elementConfig: {
           type: "date",
-          placeholder: "dateu"
+          placeholder: "date"
         },
         label: "Date of birth",
         value: "",
@@ -106,6 +106,10 @@ class Signup extends Component {
     error: false,
     errorMessage: "error"
   };
+
+  componentDidMount() {
+    this.props.onInit();
+  }
 
   signupHandler = event => {
     event.preventDefault();
@@ -218,7 +222,7 @@ class Signup extends Component {
       form = (
         <Aux>
           <Spinner />
-          <h1>Wait...</h1>
+          <h1>Waiting...</h1>
         </Aux>)
     }
 
@@ -226,9 +230,11 @@ class Signup extends Component {
       form = (<Aux>
         <img src={confirm} alt={"confirm"} />
         <h1>Congratulations</h1>
-        Now you can login.
+        You joined us. <br />
+        Now go to your mailbox, we have sent you a message, read it and confirm your email.
       </Aux>)
     }
+
     return (
       <div className={classes.Signup}>
         {form}
@@ -248,6 +254,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onInit: () => dispatch(actions.signupInit()),
     onSignup: (data) => dispatch(actions.signup(data))
   }
 }

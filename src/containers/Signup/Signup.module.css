@@ -3,17 +3,19 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  padding: 0 16px;
 }
 
 .Signup h1 {
-  margin: 0;
+  margin: 0 0 16px 0;
   font-size: 32px;
   font-weight: 700;
 }
 
 .Signup form {
   width: 80%;
-  padding-top: 2rem;
+  padding-top: 1rem;
 }
 
 .Signup img {

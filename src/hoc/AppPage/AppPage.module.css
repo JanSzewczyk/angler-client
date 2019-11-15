@@ -44,8 +44,8 @@
   flex-grow: 1;
   overflow-y: auto;
   height: 100%;
-  -webkit-transition: margin-left 250ms cubic-bezier(0.65, 0.05, 0.36, 1) 250ms;
-  transition: margin-left 250ms cubic-bezier(0.65, 0.05, 0.36, 1) 250ms;
+  /* -webkit-transition: margin-left 250ms cubic-bezier(0.65, 0.05, 0.36, 1) 250ms;
+  transition: margin-left 250ms cubic-bezier(0.65, 0.05, 0.36, 1) 250ms; */
 }
 
 @media only screen and (min-width: 30em) {

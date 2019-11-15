@@ -5,6 +5,7 @@ export {
 } from "./auth";
 
 export {
-  signup
+  signup,
+  signupInit
 } from "./sign-up";
 
