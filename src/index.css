@@ -10,6 +10,11 @@ h1 {
   font-weight: 700;
 }
 
+h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 400;
+}
 input {
   font: 400 16px "Lato", sans-serif;
 }

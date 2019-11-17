@@ -1,7 +1,12 @@
 import React, { Component } from "react";
+import axios from "../../axios-home";
 
+import Aux from "../../hoc/Auxiliary/Auxiliary";
 import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Buttons/AnimButton/AnimButton";
+import ValidMsg from "../../components/UI/ValidMsg/ValidMsg";
+import Spinner from "../../components/UI/Spinner/Spinner";
+import Feedback from "../../components/Feedback/Feedback";
 
 import classes from "./Recover.module.css";
 
@@ -16,22 +21,64 @@ class Recover extends Component {
         label: "E-Mail",
         value: "",
         validation: {
-          //  required: true,
-          // minLength: 1
+          required: true,
+          pattern: /\S+@\S+\.\S+/
         },
         valid: true,
         touched: false
       }
     },
     formIsValid: false,
-    loading: false
+    loading: false,
+    confirmation: false,
+    error: false,
+    errorMessage: ""
   };
 
   recoverHandler = event => {
     event.preventDefault();
 
-    console.log(this.state.recoverForm.email.value);
+    const queryParams = "?email=" + this.state.recoverForm.email.value;
+    this.setState({
+      loading: true
+    });
+
+    axios
+      .post("/retrieve" + queryParams)
+      .then(response => {
+        this.setState({
+          confirmation: true,
+          loading: false,
+          error: false,
+          errorMessage: ""
+        });
+      })
+      .catch(err => {
+        this.setState({
+          loading: false,
+          error: true,
+          errorMessage: err.response.data.message
+        });
+      });
   };
+
+  checkValidity(value, rules) {
+    let isValid = true;
+
+    if (!rules) {
+      return true;
+    }
+
+    if (rules.required) {
+      isValid = value.trim() !== "" && isValid;
+    }
+
+    if (rules.pattern) {
+      isValid = rules.pattern.test(value) && isValid;
+    }
+
+    return isValid;
+  }
 
   inputChangedHandler = (event, inputIdentifier) => {
     const updatedReciverForm = {
@@ -44,10 +91,10 @@ class Recover extends Component {
 
     updatedFormElement.value = event.target.value;
 
-    // updatedFormElement.valid = this.checkValidity(
-    //   updatedFormElement.value,
-    //   updatedFormElement.validation
-    // );
+    updatedFormElement.valid = this.checkValidity(
+      updatedFormElement.value,
+      updatedFormElement.validation
+    );
 
     updatedFormElement.touched = true;
 
@@ -60,7 +107,8 @@ class Recover extends Component {
 
     this.setState({
       recoverForm: updatedReciverForm,
-      // formIsValid: formIsValid
+      formIsValid: formIsValid,
+      error: false
     });
   };
 
@@ -74,33 +122,8 @@ class Recover extends Component {
     }
 
     let form = (
-      <form onSubmit={this.recoverHandler}>
-        {formElementArray.map(formElement => (
-          <Input
-            key={formElement.id}
-            label={formElement.config.label}
-            elementType={formElement.config.elementType}
-            elementConfig={formElement.config.elementConfig}
-            value={formElement.config.value}
-            invalid={!formElement.config.valid}
-            shouldValidate={formElement.config.validation}
-            touched={formElement.config.touched}
-            changed={event => this.inputChangedHandler(event, formElement.id)}
-          />
-        ))}
-        <Button
-          btnStyle={"SignInButton"}
-          btnType={"Btn3"}
-          disabled={!this.state.formIsValid}
-        >
-          Send
-        </Button>
-      </form>
-    );
-
-    return (
-      <div className={classes.Recover}>
-        <h1>Remind password</h1>
+      <Aux>
+        <h1>Recover account</h1>
         <div className={classes.Description}>
           If you have forgotten your password, a link to the page allowing you
           to set a new password will be sent to the e-mail address provided.
@@ -109,9 +132,53 @@ class Recover extends Component {
           If your account is inactive and you have not received the activation
           email, you will receive it again.
         </div>
-        {form}
-      </div>
+        <form onSubmit={this.recoverHandler}>
+          {formElementArray.map(formElement => (
+            <Input
+              key={formElement.id}
+              label={formElement.config.label}
+              elementType={formElement.config.elementType}
+              elementConfig={formElement.config.elementConfig}
+              value={formElement.config.value}
+              invalid={!formElement.config.valid}
+              shouldValidate={formElement.config.validation}
+              touched={formElement.config.touched}
+              changed={event => this.inputChangedHandler(event, formElement.id)}
+            />
+          ))}
+          <ValidMsg show={this.state.error} message={this.state.errorMessage} />
+          <Button
+            btnStyle={"SignInButton"}
+            btnType={"Btn3"}
+            disabled={!this.state.formIsValid}
+          >
+            Send
+          </Button>
+        </form>
+      </Aux>
     );
+
+    if (this.state.loading) {
+      form = (
+        <Aux>
+          <Spinner />
+          <h1>Waiting ...</h1>
+        </Aux>
+      );
+    }
+
+    if (this.state.confirmation) {
+      form = (
+        <Feedback title={"Success"} success={true}>
+          Message was sent.
+          <br />
+          <br />
+          Check your email and follow the instructions.
+        </Feedback>
+      );
+    }
+
+    return <div className={classes.Recover}>{form}</div>;
   }
 }
 

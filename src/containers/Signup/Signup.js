@@ -102,9 +102,6 @@ class Signup extends Component {
       }
     },
     formIsValid: false,
-    loading: false,
-    error: false,
-    errorMessage: ""
   };
 
   componentDidMount() {

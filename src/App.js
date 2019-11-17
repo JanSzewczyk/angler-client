@@ -12,6 +12,7 @@ import NotFound from "./components/NotFound/NotFound";
 import AppPage from "./hoc/AppPage/AppPage";
 import Logout from "./containers/Signin/Logout/Logout"
 import Confirmation from "./containers/Signup/Confirmation/Confirmation";
+import ChangePassword from "./containers/Recover/ChangePassword/ChangePassword";
 
 import Aux from "./hoc/Auxiliary/Auxiliary";
 
@@ -34,6 +35,7 @@ class App extends Component {
               <Switch>
                 <Route path="/signup" component={Signup} />
                 <Route path="/recover" component={Recover} />
+                <Route path="/changePassword" component={ChangePassword} />
                 <Route path="/confirm" component={Confirmation} />
                 <Route path="/" exact component={Signin} />
                 <Route component={NotFound} />

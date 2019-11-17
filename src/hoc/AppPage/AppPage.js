@@ -40,8 +40,9 @@ class AppPage extends Component {
               <Navbar show={this.state.showNavbar} />
               <div className={classes.AppContent}>
                 {this.props.children}
+                <Temp />
               </div>
-              <Temp />
+           
             </div>
           </div>
         </main>

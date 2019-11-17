@@ -5,7 +5,6 @@ import classes from "./FullLogo.module.css";
 
 const fullLogo = props => (
   <div className={classes.FullLogo}>
-    {/* <img src={burgerLogo} alt="MyBurger" /> */}
     <img src={FullLogo} alt="AnglerLogo" />
   </div>
 );
