@@ -71,8 +71,8 @@
 .SignInButton {
   width: 100%;
   height: 2.7rem;
-  border: 1px solid #27ae60;
-  border-radius: 2px;
+  border: 1px solid #2f8ecb;
+  border-radius: 4px;
   font-weight: 500;
   background: none;
   padding: 0.7rem 1rem;
@@ -93,7 +93,7 @@
   left: 0;
   width: 100%;
   height: 0%;
-  background: #27ae60;
+  background: #2f8ecb;
   z-index: -1;
   transition: 0.8s;
 }
@@ -103,7 +103,7 @@
 }
 .Btn3:hover {
   z-index: 3;
-  color: #27ae60;
+  color: #2f8ecb;
 }
 .Btn3::before {
   top: 0;
@@ -120,8 +120,8 @@
 .SignUpButton {
   width: 100%;
   height: 2.7rem;
-  border: 1px solid #e67e22;
-  border-radius: 2px;
+  border: 1px solid #27ab5b;
+  border-radius: 4px;
   font-weight: 500;
   background: none;
   padding: 0.7rem 1rem;
@@ -141,13 +141,13 @@
   left: 0;
   width: 100%;
   height: 0%;
-  background: #e67e22;
+  background: #27ab5b;
   z-index: -1;
   transition: 0.8s;
 }
 .Btn2 {
   z-index: 3;
-  color: #e67e22;
+  color: #27ab5b;
 }
 .Btn2:hover {
   z-index: 3;

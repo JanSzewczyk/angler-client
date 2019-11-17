@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import Input from "../../components/UI/Input/Input";
-import Button from "../../components/UI/Button/Button";
+import Button from "../../components/UI/Buttons/AnimButton/AnimButton";
 
 import classes from "./Recover.module.css";
 
@@ -16,7 +16,7 @@ class Recover extends Component {
         label: "E-Mail",
         value: "",
         validation: {
-          // required: true,
+          //  required: true,
           // minLength: 1
         },
         valid: true,
@@ -29,6 +29,8 @@ class Recover extends Component {
 
   recoverHandler = event => {
     event.preventDefault();
+
+    console.log(this.state.recoverForm.email.value);
   };
 
   inputChangedHandler = (event, inputIdentifier) => {
@@ -58,7 +60,7 @@ class Recover extends Component {
 
     this.setState({
       recoverForm: updatedReciverForm,
-      formIsValid: formIsValid
+      // formIsValid: formIsValid
     });
   };
 

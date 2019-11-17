@@ -23,7 +23,7 @@ class App extends Component {
   render() {
     return (
       <Aux>
-        {!this.props.isAuthenticated ? (
+        {this.props.isAuthenticated ? (
           <AppPage>
             <Switch>
               <Route path="/logout" component={Logout} />

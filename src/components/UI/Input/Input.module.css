@@ -6,7 +6,6 @@
 .InputElement {
   width: 100%;
   padding: 8px 0;
-  font-size: 16px;
   color: #f4f4f4;
   letter-spacing: 1px;
   margin-bottom: 24px;
@@ -32,19 +31,19 @@
 .InputElement:focus ~ .Label {
   top: -24px;
   left: 0;
-  color: #27ae60;
+  color: #2f8ecb;
   font-size: 14px;
 }
 
 .UpPosition {
   top: -18px;
   left: 0;
-  color: #27ae60;
+  color: #2f8ecb;
   font-size: 14px;
 }
 
 .Invalid {
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid #cb2f40;
 }
 
 /* input[type="date" i]::-webkit-datetime-edit-text {

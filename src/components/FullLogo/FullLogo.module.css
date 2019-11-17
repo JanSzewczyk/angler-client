@@ -1,0 +1,15 @@
+.FullLogo {
+  width: 80%;
+  margin-top: 8px 0 16px 0;
+}
+
+.FullLogo img {
+  width: 100%;
+}
+
+
+@media (min-height: 800px) {
+  .FullLogo{
+    margin: 16px 0 24px 0;
+  }
+}

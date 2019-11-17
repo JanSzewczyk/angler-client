@@ -18,7 +18,15 @@
   padding-top: 1rem;
 }
 
-.Signup img {
+.Icon {
   width: 60%;
-  margin: 8px;
+}
+
+.Signup img {
+  width: 100%;
+}
+
+.Content {
+  width: 70%;
+  margin-bottom: 16px;
 }

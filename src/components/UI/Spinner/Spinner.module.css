@@ -13,12 +13,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  border-top: 3px solid whitesmoke;
+  border-top: 3px solid #2f8ecb;
   border: 3px solid transparent;
   transform-origin: left top;
-  border-top: 3px solid whitesmoke;
-  border-bottom: 3px solid whitesmoke;
-  border-left: 3px solid whitesmoke;
+  border-top: 3px solid #2f8ecb;
+  border-bottom: 3px solid #2f8ecb;
+  border-left: 3px solid #2f8ecb;
 }
 
 .First {
@@ -30,7 +30,7 @@
 .Second {
   height: 5em;
   width: 5em;
-  border-right: 3px solid whitesmoke;
+  border-right: 3px solid #2f8ecb;
   border-left: 3px solid transparent;
   animation: rotate2 1.5s linear infinite;
 }

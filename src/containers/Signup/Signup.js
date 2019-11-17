@@ -3,14 +3,14 @@ import { connect } from "react-redux";
 
 import Aux from "../../hoc/Auxiliary/Auxiliary";
 import Input from "../../components/UI/Input/Input";
-import Button from "../../components/UI/Button/Button";
+import AnimButton from "../../components/UI/Buttons/AnimButton/AnimButton";
 import ValidMsg from "../../components/UI/ValidMsg/ValidMsg";
 import Spinner from "../../components/UI/Spinner/Spinner";
+import Feedback from "../../components/Feedback/Feedback";
 
 import * as actions from "../../store/actions/index";
 
 import classes from "./Signup.module.css";
-import confirm from "../../assets/icons/confirm.png"
 
 class Signup extends Component {
   state = {
@@ -104,7 +104,7 @@ class Signup extends Component {
     formIsValid: false,
     loading: false,
     error: false,
-    errorMessage: "error"
+    errorMessage: ""
   };
 
   componentDidMount() {
@@ -207,13 +207,13 @@ class Signup extends Component {
             />
           ))}
           <ValidMsg show={this.props.error} message={this.props.errorMessage} />
-          <Button
+          <AnimButton
             btnStyle={"SignUpButton"}
             btnType={"Btn2"}
             disabled={!this.state.formIsValid}
           >
             Sign up
-        </Button>
+          </AnimButton>
         </form>
       </Aux>
     );
@@ -222,41 +222,39 @@ class Signup extends Component {
       form = (
         <Aux>
           <Spinner />
-          <h1>Waiting...</h1>
-        </Aux>)
+          <h1>Waiting ...</h1>
+        </Aux>
+      );
     }
 
     if (this.props.confirmation) {
-      form = (<Aux>
-        <img src={confirm} alt={"confirm"} />
-        <h1>Congratulations</h1>
-        You joined us. <br />
-        Now go to your mailbox, we have sent you a message, read it and confirm your email.
-      </Aux>)
+      form = (
+        <Feedback title={"Congratulations"} success={true}>
+          You joined us. <br /> <br />
+          Now go to your mailbox, we have sent you a message, read it and
+          confirm your email.
+        </Feedback>
+      );
     }
 
-    return (
-      <div className={classes.Signup}>
-        {form}
-      </div>
-    )
+    return <div className={classes.Signup}>{form}</div>;
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     confirmation: state.signup.confirmation,
     loading: state.signup.loading,
     error: state.signup.error,
     errorMessage: state.signup.errorMessage
-  }
-}
+  };
+};
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     onInit: () => dispatch(actions.signupInit()),
-    onSignup: (data) => dispatch(actions.signup(data))
-  }
-}
+    onSignup: data => dispatch(actions.signup(data))
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

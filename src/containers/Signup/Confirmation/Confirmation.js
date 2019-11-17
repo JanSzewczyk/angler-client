@@ -3,6 +3,7 @@ import axios from "../../../axios-home";
 
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import Aux from "../../../hoc/Auxiliary/Auxiliary";
+import Feedback from "../../../components/Feedback/Feedback";
 
 import classes from "./Confirmtion.module.css";
 
@@ -12,14 +13,13 @@ export class Confirmation extends Component {
     loading: true,
     error: false,
     errorMessage: ""
-  }
+  };
 
   componentDidMount() {
     const query = new URLSearchParams(this.props.location.search);
     let email = "";
     for (let param of query.entries()) {
       if (param[0] === "email") {
-        console.log(param[1]);
         email = param[1];
       }
     }
@@ -36,9 +36,10 @@ export class Confirmation extends Component {
     }
   }
 
-  confirmAccountHandler = (email) => {
+  confirmAccountHandler = email => {
     const queryParams = "?email=" + email;
-    axios.put("/signup/confirm" + queryParams)
+    axios
+      .put("/signup/confirm" + queryParams)
       .then(response => {
         console.log(response);
         this.setState({
@@ -57,16 +58,15 @@ export class Confirmation extends Component {
           errorMessage: err.response.data.message
         });
       });
-  }
+  };
 
   redirectToLoginHandler = () => {
     setTimeout(() => {
       this.props.history.replace("/");
-    }, 5000);
-  }
+    }, 10000);
+  };
 
   render() {
-
     if (this.state.redirect) {
       this.redirectToLoginHandler();
     }
@@ -84,22 +84,30 @@ export class Confirmation extends Component {
 
     if (!this.state.loading && !this.state.error) {
       view = (
-        <h1> gratulacje </h1>
-      )
+        <Feedback title={"Welcome"} success={true}>
+          Now you can log in without any problems. Thank you for joining our
+          COMMUNITY, create it and have fun.
+          <br />
+          <br />
+          To log in, click the button above or wait a moment (it will redirect
+          you automatically).
+        </Feedback>
+      );
     }
 
     if (this.state.error) {
       view = (
-        <h1> {this.state.errorMessage} </h1>
-      )
+        <Feedback title={"Problem"} success={false}>
+          {this.state.errorMessage}
+          <br />
+          <br />
+          Sorry for the inconvenience.
+        </Feedback>
+      );
     }
 
-    return (
-      <div className={classes.Confirmation}>
-        {view}
-      </div>
-    )
+    return <div className={classes.Confirmation}>{view}</div>;
   }
 }
 
-export default Confirmation
+export default Confirmation;

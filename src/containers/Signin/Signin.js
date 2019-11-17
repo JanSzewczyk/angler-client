@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 import Aux from "../../hoc/Auxiliary/Auxiliary";
 import Input from "../../components/UI/Input/Input";
-import Button from "../../components/UI/Button/Button";
+import Button from "../../components/UI/Buttons/AnimButton/AnimButton";
 import ValidMsg from "../../components/UI/ValidMsg/ValidMsg";
 import Loading from "../../components/Loading/Loading";
 

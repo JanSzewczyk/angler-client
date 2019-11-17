@@ -1,7 +1,7 @@
 import React from "react";
 
 import Aux from "../Auxiliary/Auxiliary";
-import Logo from "../../components/Logo/Logo";
+import FullLogo from "../../components/FullLogo/FullLogo";
 import NavigationItems from "../../components/Navigation/NavigationItems/NavigationItems";
 
 import classes from "./HomePage.module.css";
@@ -10,7 +10,7 @@ const homePage = props => (
   <Aux>
     <main className={classes.Layout}>
       <div className={classes.Left}>
-        <Logo />
+        <FullLogo />
         <nav>
           <NavigationItems />
         </nav>

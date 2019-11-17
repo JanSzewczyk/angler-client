@@ -1,12 +1,11 @@
 .Valid {
   width: 90%;
-  border: 2px solid #e74c3c;
-  color: #e74c3c;
+  border: 2px solid #cb2f40;
+  color: #cb2f40;
   border-radius: 16px;
   font-weight: 500;
   background: none;
   margin: 1rem auto;
   padding: 4px 8px;
   text-align: center;
-  /* background-color: #e74c3c; */
 }

@@ -38,9 +38,9 @@ class AppPage extends Component {
             <Toolbar showUserPanel={this.showNavbarHandler} />
             <div className={classes.AppBody}>
               <Navbar show={this.state.showNavbar} />
-              {/* <div className={classes.AppContent}>
+              <div className={classes.AppContent}>
                 {this.props.children}
-              </div> */}
+              </div>
               <Temp />
             </div>
           </div>
