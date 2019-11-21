@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+import Loading from "../../components/Loading/Loading"
 import Header from "../../components/Header/Header";
 import UserPanel from "../../components/UserPanel/UserPanel";
 import Toolbar from "../../components/Toolbar/Toolbar";
@@ -9,31 +10,49 @@ import Aux from "../Auxiliary/Auxiliary";
 
 import classes from "./AppPage.module.css";
 
+import { connect } from "react-redux";
+import * as actions from "../../store/actions/index";
+
 class AppPage extends Component {
   state = {
     showUserPanel: false,
     showNavbar: true
+  };
+
+  componentDidMount() {
+    this.props.onGetUserInformation(this.props.tokenType, this.props.token);
   }
 
   showUserPanelHandler = () => {
     this.setState({
       showUserPanel: !this.state.showUserPanel
-    })
-  }
+    });
+  };
 
   showNavbarHandler = () => {
-    console.log("eloo")
     this.setState({
       showNavbar: !this.state.showNavbar
     });
-  }
+  };
 
   render() {
     return (
       <Aux>
-        <Header showUserPanel={this.showUserPanelHandler} />
+        <Loading loading={this.props.loading} access={false}/>
+        <Header
+          showUserPanel={this.showUserPanelHandler}
+          userName={
+            this.props.userInformation.firstName +
+            " " +
+            this.props.userInformation.lastName
+          }
+        />
         <main className={classes.Main}>
-          <UserPanel show={this.state.showUserPanel} />
+          <UserPanel
+            show={this.state.showUserPanel}
+            showUserPanel={this.showUserPanelHandler}
+            userInfo={this.props.userInformation}
+          />
           <div className={classes.App}>
             <Toolbar showUserPanel={this.showNavbarHandler} />
             <div className={classes.AppBody}>
@@ -42,13 +61,28 @@ class AppPage extends Component {
                 {this.props.children}
                 <Temp />
               </div>
-           
             </div>
           </div>
         </main>
       </Aux>
-    )
+    );
   }
 }
 
-export default AppPage;
+const mapStateToProps = state => {
+  return {
+    token: state.auth.token,
+    tokenType: state.auth.tokenType,
+    userInformation: state.user.userInformation,
+    loading: state.user.loading
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onGetUserInformation: (type, token) =>
+      dispatch(actions.getUserInformation(type, token))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppPage);

@@ -6,8 +6,7 @@
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
   height: calc(100vh - 48px);
-  color: #fafafa;
-  background: #0c0c0c;
+  background: #208b4a;
   -webkit-transition: height 250ms cubic-bezier(0.65, 0.05, 0.36, 1),
     margin 250ms cubic-bezier(0.65, 0.05, 0.36, 1);
   transition: height 250ms cubic-bezier(0.65, 0.05, 0.36, 1),
@@ -28,4 +27,91 @@
     height: calc(100vh - 48px);
     margin-right: -300px;
   }
+}
+
+.UserPanelContent {
+  color: #f4f4f4;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+}
+
+.Top {
+  position: relative;
+  height: 48px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 16px;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+}
+
+.Close {
+  margin-left: auto;
+  margin-right: 0;
+  cursor: pointer;
+  opacity: 0.8;
+}
+.Close:hover {
+  opacity: 1;
+}
+
+.Content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  background-clip: padding-box;
+  max-width: 100%;
+  border-right: 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  margin-bottom: 0;
+  padding: 16px 24px 72px;
+}
+
+.Profile {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.Name {
+  margin-top: 8px;
+  font-size: 16px;
+}
+
+.UserDetails {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-weight: 300;
+}
+
+.Bottom {
+  -ms-flex-item-align: center;
+  align-self: center;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  padding: 16px 0;
+  width: 90%;
 }

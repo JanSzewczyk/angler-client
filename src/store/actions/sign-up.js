@@ -1,51 +1,48 @@
-import axios from "../../axios-home";
+import axios from "../../axios";
 
 import * as actionTypes from "./actionTypes";
 
 export const signupInit = () => {
   return {
     type: actionTypes.SIGNUP_INIT
-  }
-}
+  };
+};
 
 export const signupStart = () => {
   return {
     type: actionTypes.SIGNUP_START
-  }
-}
+  };
+};
 
 export const signupSuccess = () => {
   return {
     type: actionTypes.SIGNUP_SUCCESS
-  }
-}
+  };
+};
 
-export const signupFail = (errorMessage) => {
+export const signupFail = errorMessage => {
   return {
     type: actionTypes.SIGNUP_FAIL,
     errorMessage: errorMessage
-  }
-}
+  };
+};
 
-export const signup = (data) => {
+export const signup = data => {
   return dispatch => {
-    dispatch(signupStart())
+    dispatch(signupStart());
 
     axios
-      .post("/signup", data)
+      .post("/signUp", data)
       .then(res => {
-        console.log(res)
-        dispatch(signupSuccess())
+        console.log(res);
+        dispatch(signupSuccess());
       })
       .catch(err => {
-        let errorMessage = "Problem with server, sorry :("
+        let errorMessage = "Problem with server, sorry :(";
         if (err.response) {
-          errorMessage = err.response.data.message
+          errorMessage = err.response.data.message;
         }
-        dispatch(signupFail(errorMessage))
+        dispatch(signupFail(errorMessage));
       });
-
   };
-}
-
-
+};

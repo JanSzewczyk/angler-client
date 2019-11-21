@@ -5,6 +5,7 @@ body {
 }
 
 h1 {
+  color: #f4f4f4;
   margin: 0;
   font-size: 32px;
   font-weight: 700;
@@ -15,10 +16,15 @@ h2 {
   font-size: 24px;
   font-weight: 400;
 }
+
 input {
   font: 400 16px "Lato", sans-serif;
 }
 
 button {
   font: 400 16px "Lato", sans-serif;
+}
+
+.react-icons {
+  vertical-align: middle;
 }

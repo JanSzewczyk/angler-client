@@ -3,51 +3,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* transition: all 0.5s linear; */
-}
-
-.NotFound h1 {
-  margin: 0;
-  font-size: 200px;
-  color: white;
-  letter-spacing: 5px;
-  font-weight: 700;
-  text-shadow: 10px 9px 3px #74b9ff;
-  transition: all 1s linear;
-}
-
-.NotFound h2 {
-  color: white;
-  font-size: 26px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.NotFound p {
-  color: white;
-  font-weight: 400;
   text-align: center;
-  margin: 20px auto;
 }
 
-.NotFound a {
-  font-size: 14px;
-  text-decoration: none;
-  text-transform: uppercase;
-  display: inline-block;
-  color: blue;
-  background: white;
-  padding: 15px 30px;
-  box-shadow: 5px 4px 15px -5px #0046d5;
-  border-radius: 40px;
-  transition: all 0.5s linear;
-}
-
-.NotFound:hover h1 {
-  text-shadow: 9px 6px 3px #b2bec3;
-}
-
-.NotFound:hover a {
-  color: white;
-  background: blue;
+.NotFound img {
+  width: 90%;
 }

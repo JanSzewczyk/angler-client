@@ -1,0 +1,10 @@
+.Item {
+  margin: 8px 0 16px 0;
+  text-align: center;
+}
+
+
+.Item svg {
+    margin-right: 8px;
+    vertical-align: middle;
+  }

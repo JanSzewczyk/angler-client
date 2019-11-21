@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "../../../axios-home";
+import axios from "../../../axios";
 
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import Aux from "../../../hoc/Auxiliary/Auxiliary";
@@ -39,7 +39,7 @@ export class Confirmation extends Component {
   confirmAccountHandler = email => {
     const queryParams = "?email=" + email;
     axios
-      .put("/signup/confirm" + queryParams)
+      .put("/signUp/confirm" + queryParams)
       .then(response => {
         console.log(response);
         this.setState({

@@ -9,7 +9,7 @@ import Button from "../../components/UI/Buttons/AnimButton/AnimButton";
 import ValidMsg from "../../components/UI/ValidMsg/ValidMsg";
 import Loading from "../../components/Loading/Loading";
 
-import * as actions from "../../store/actions/index"
+import * as actions from "../../store/actions/index";
 
 import classes from "./Signin.module.css";
 
@@ -50,15 +50,10 @@ class Signin extends Component {
 
   loginHandler = event => {
     event.preventDefault();
-
-    // this.props.setTimeout(() => {
-    //   this.setState({
-    //     loading: false
-    //   });
-    // }, 3000);
-
-    console.log("eloasdfsad");
-    this.props.onAuth(this.state.loginForm.email.value, this.state.loginForm.password.value);
+    this.props.onAuth(
+      this.state.loginForm.email.value,
+      this.state.loginForm.password.value
+    );
   };
 
   checkValidity(value, rules) {
@@ -178,19 +173,19 @@ class Signin extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     access: state.auth.access,
     loading: state.auth.loading,
     error: state.auth.error,
     errorMessage: state.auth.errorMessage
   };
-}
+};
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     onAuth: (email, password) => dispatch(actions.auth(email, password))
   };
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signin);

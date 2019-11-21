@@ -2,12 +2,13 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: #0c0c0c;
+  background-color: #208b4a;
+  border-bottom: 1px solid #1c7b42;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
   color: #f4f4f4;
-  height: 48px;
+  height: 47px;
   font-weight: 100;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -17,7 +18,7 @@
   padding-right: 16px;
 }
 
-.HeaderContainer {
+.LogoContainer {
   cursor: pointer;
   -ms-flex-item-align: center;
   align-self: center;
@@ -27,26 +28,54 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  text-decoration: none;
+}
+
+
+.LogoContainer span {
+  color: #f4f4f4;
 }
 
 .Logo {
-  margin-right: 16px;
+  margin-right: 8px;
 }
-.Logo a {
-  color: #f4f4f4;
+
+.Logo img {
+  width: 48px;
 }
 
 .Title {
   margin-left: 4px;
   font-weight: 500;
+  font-size: 18px;
+}
+
+.UserContainer {
+  cursor: pointer;
+  -ms-flex-item-align: center;
+  align-self: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.UserContainer:hover {
+  opacity: 0.8;
+}
+
+.UserContainer:focus {
+  outline: none;
+}
+
+.UserContainer svg {
+  padding-right: 8px;
 }
 
 .User {
   margin-right: 0;
-}
-.User:hover {
-  opacity: 0.8;
-}
-.User:focus {
-  outline: none;
+  font-size: 18px;
 }

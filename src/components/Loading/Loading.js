@@ -6,6 +6,8 @@ import Backdrop from "../UI/Backdrop/Backdrop";
 import Spinner from "../UI/Spinner/Spinner";
 import Logo from "../Logo/Logo";
 
+// import "./Loading.module.css"
+
 const loading = props => (
   <Aux>
     {props.loading ? (

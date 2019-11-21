@@ -12,12 +12,14 @@ import * as serviceWorker from "./serviceWorker";
 
 import authReducer from "./store/reducers/auth";
 import signupReducer from "./store/reducers/sign-up"
+import userReducer from "./store/reducers/user";
 
 import "./index.css";
 
 const rootReducers = combineReducers({
   auth: authReducer,
-  signup: signupReducer
+  signup: signupReducer,
+  user: userReducer
 });
 
 const store = createStore(
