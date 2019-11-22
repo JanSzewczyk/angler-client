@@ -1,0 +1,41 @@
+.NavbarItem {
+  padding: 0 8px;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.NavbarItem a {
+  color: #f4f4f4;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+  margin: 12px 0 8px 0;
+}
+
+svg {
+  margin: 0 8px;
+  vertical-align: middle;
+  padding-bottom: 4px;
+}
+
+.NavbarItem a:hover,
+.NavbarItem a:active,
+.NavbarItem a.Active {
+  color: #20618b;
+}
+
+.Line {
+  margin:  0 8px;
+  border-bottom: 1px solid #f4f4f4;
+  box-shadow: 0 1px 2px rgba(255, 255, 255, 0.2);
+  opacity: 0.8;
+  width: calc(100% - 16px);
+}
+
+.NavbarItem:last-of-type .Line {
+  display: none;
+}

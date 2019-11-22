@@ -54,9 +54,9 @@ class AppPage extends Component {
             userInfo={this.props.userInformation}
           />
           <div className={classes.App}>
-            <Toolbar showUserPanel={this.showNavbarHandler} />
+            <Toolbar showNavbar={this.showNavbarHandler} activeNavbar={this.state.showNavbar}/>
             <div className={classes.AppBody}>
-              <Navbar show={this.state.showNavbar} />
+              <Navbar open={this.state.showNavbar} />
               <div className={classes.AppContent}>
                 {this.props.children}
                 <Temp />

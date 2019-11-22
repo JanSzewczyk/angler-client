@@ -1,0 +1,68 @@
+.MenuToggleButton {
+  float: left;
+  height: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding-right: 16px;
+
+
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.Icon {
+  width: 48px;
+  height: 100%;
+  cursor: pointer;
+}
+
+.Hamburger {
+  margin-left: 16px;
+  width: 24px;
+  height: 4px;
+  border-radius: 2px;
+  background: #208b4a;
+  position: absolute;
+  top: 45%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
+}
+
+.Hamburger:before,
+.Hamburger:after {
+  border-radius: 2px;
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 4px;
+  background: #208b4a;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
+}
+
+.Hamburger:before {
+  top: -8px;
+}
+
+.Hamburger:after {
+  top: 8px;
+}
+
+.Active .Hamburger:before {
+    background: #20618b;
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.Active .Hamburger:after {
+    background: #20618b;
+  top: 0;
+  transform: rotate(135deg);
+}
+
+.Active .Hamburger {
+  background: rgba(0, 0, 0, 0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0);
+}
