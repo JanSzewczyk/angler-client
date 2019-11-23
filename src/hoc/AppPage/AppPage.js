@@ -5,7 +5,6 @@ import Header from "../../components/Header/Header";
 import UserPanel from "../../components/UserPanel/UserPanel";
 import Toolbar from "../../components/Toolbar/Toolbar";
 import Navbar from "../../components/Navbar/Navbar";
-import Temp from "../../containers/Temp/Temp";
 import Aux from "../Auxiliary/Auxiliary";
 
 import classes from "./AppPage.module.css";
@@ -16,7 +15,7 @@ import * as actions from "../../store/actions/index";
 class AppPage extends Component {
   state = {
     showUserPanel: false,
-    showNavbar: true
+    showNavbar: false
   };
 
   componentDidMount() {
@@ -59,7 +58,6 @@ class AppPage extends Component {
               <Navbar open={this.state.showNavbar} />
               <div className={classes.AppContent}>
                 {this.props.children}
-                <Temp />
               </div>
             </div>
           </div>

@@ -9,28 +9,28 @@
   border: 1px solid #f4f4f4;
 }
 
-.light .btn.big {
+.Button .big {
   font-size: 1em;
 }
-.light .btn:last-child {
+.Button:last-child {
   margin-right: 0;
 }
-.light .btn:disabled {
-  opacity: 0.4;
+.Button:disabled {
+  opacity: 0.8;
   cursor: not-allowed;
 }
 .Button:hover:not(:disabled) {
-  color: #e0e0e0;
+  color: #1c7b42;
   text-decoration: none;
-  background-color: #4e4e4e;
-  border: 1px solid #4e4e4e;
+  background-color: #fefefe;
+  border: 1px solid #fefefe;
   cursor: pointer;
 }
 
 .Button:active:not(:disabled) {
-  color: #e0e0e0;
-  background-color: #3a3a3a;
-  border: 1px solid #3a3a3a;
+  color: #1c7b42;
+  background-color: #cdcdcd;
+  border: 1px solid #cdcdcd;
   -webkit-transition: none;
   transition: none;
 }
@@ -41,6 +41,10 @@
 .Button svg {
   margin-right: 4px;
   vertical-align: middle;
+}
+
+.Button ~ .Button {
+  margin-left: 8px;
 }
 
 
@@ -69,42 +73,39 @@
 
 
 /* PRIMARY */
-.light .btn.primary {
-  color: #ffffff;
-  background-color: #0082f0;
-  border: 1px solid #0082f0;
+.Primary {
+  color: #f4f4f4;
+  background-color: #2f8ecb;
+  border: 1px solid #2f8ecb;
 }
-.light .btn.primary:hover:not(:disabled) {
-  color: #ffffff;
-  background-color: #3ea6ff;
-  border: 1px solid #3ea6ff;
+.Primary:hover:not(:disabled) {
+  color: #f4f4f4;
+  background-color: #3b97d2;
+  border: 1px solid #3b97d2;
 }
-.light .btn.primary:active:not(:disabled) {
-  color: #ffffff;
-  background-color: #0059a3;
-  border: 1px solid #0059a3;
+.Primary:active:not(:disabled) {
+  color: #f4f4f4;
+  background-color: #20618b;
+  border: 1px solid #20618b;
   -webkit-transition: none;
   transition: none;
 }
 
 /* WARNING */
-.light .btn.warning {
-  color: #ffffff;
-  background-color: #f52323;
-  border: 1px solid #f52323;
+.Warming {
+  color: #f4f4f4;
+  background-color: #cb2f40;
+  border: 1px solid #cb2f40;
 }
-.light .btn.warning:hover:not(:disabled) {
-  color: #ffffff;
-  background-color: #f86c6c;
-  border: 1px solid #f86c6c;
+.Warming:hover:not(:disabled) {
+  color: #f4f4f4;
+  background-color: #d23c4c;
+  border: 1px solid #d23c4c;
 }
-.light .btn.warning:active:not(:disabled) {
-  color: #ffffff;
-  background-color: #c30909;
-  border: 1px solid #c30909;
+.Warming:active:not(:disabled) {
+  color: #f4f4f4;
+  background-color: #bb2b3b;
+  border: 1px solid #bb2b3b;
   -webkit-transition: none;
   transition: none;
-}
-.light .btn ~ .btn {
-  margin-left: 8px;
 }
