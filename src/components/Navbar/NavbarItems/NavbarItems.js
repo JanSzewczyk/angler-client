@@ -12,7 +12,7 @@ const navbarItems = props => (
       <FaHome size={20} />
       Home
     </NavbarItem>
-    <NavbarItem link="/trips" exact>
+    <NavbarItem link="/trips" >
       <FaFish size={20} />
         Fishing Trips
     </NavbarItem>

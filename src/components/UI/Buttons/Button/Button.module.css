@@ -3,15 +3,12 @@
   padding: 0.5em 1em;
   border-radius: 3px;
   outline: 0;
-  font-size: 12px;
+  font-size: 14px;
   color: #f4f4f4;
   background-color: transparent;
   border: 1px solid #f4f4f4;
 }
 
-.Button .big {
-  font-size: 1em;
-}
 .Button:last-child {
   margin-right: 0;
 }
@@ -39,8 +36,9 @@
 }
 
 .Button svg {
-  margin-right: 4px;
+  margin:0 4px 0 0; 
   vertical-align: middle;
+  padding-bottom: 0;
 }
 
 .Button ~ .Button {

@@ -39,3 +39,11 @@
   display: flex;
   align-items: center;
 }
+
+
+.Loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

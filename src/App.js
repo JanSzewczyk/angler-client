@@ -15,6 +15,7 @@ import Confirmation from "./containers/Signup/Confirmation/Confirmation";
 import ChangePassword from "./containers/Recover/ChangePassword/ChangePassword";
 import Home from "./containers/Home/Home";
 import FishingTrips from "./containers/FishingTrips/FishingTrips";
+import FishingTrip from "./containers/FishingTrips/FishingTrip/FishingTrip";
 
 import Aux from "./hoc/Auxiliary/Auxiliary";
 
@@ -29,7 +30,9 @@ class App extends Component {
         {this.props.isAuthenticated ? (
           <AppPage>
             <Switch>
-            <Route path="/trips" component={FishingTrips} />
+              <Route path={"/trips/:id"} exact component={FishingTrip} />
+
+              <Route path="/trips" component={FishingTrips} />
               <Route path="/logout" component={Logout} />
               <Route path="/" component={Home} />
             </Switch>

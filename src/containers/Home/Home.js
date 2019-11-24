@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { Map, TileLayer, Marker, Popup, CircleMarker } from "react-leaflet";
-import { GiFishing } from "react-icons/gi";
-import DivIcon from "react-leaflet-div-icon";
+import { Map, TileLayer, Marker, Popup} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import {  fishingTripMarker  } from '../../components/Maps/Markers/FishingTrip/FishingTripMarker';
 
