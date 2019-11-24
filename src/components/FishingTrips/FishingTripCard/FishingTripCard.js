@@ -13,7 +13,7 @@ const fishingTripCard = props => {
 
   return (
     <div className={classes.FishingTripCard}>
-      <div className={classes.Head}>
+      {/* <div className={classes.Head}>
         <div className={classes.Left}>
           <div className={classes.Title}>{props.data.title}</div>
           <div className={classes.Date}>{props.data.tripDate}</div>
@@ -24,7 +24,7 @@ const fishingTripCard = props => {
             Show
             </Buttom>
         </div>
-      </div>
+      </div> */}
       <div className={classes.Body}>
         <div className={classes.Content}>
           <Map
@@ -42,9 +42,18 @@ const fishingTripCard = props => {
           </Map>
         </div>
       </div>
-      {/* <div className={classes.Bottom}>
-        <div className={classes.Left}>adfgasdgasdgasdgasd</div>
-      </div> */}
+      <div className={classes.Bottom}>
+        <div className={classes.Left}>
+          <div className={classes.Title}>{props.data.title}</div>
+          <div className={classes.Date}>{props.data.tripDate}</div>
+        </div>
+        <div className={classes.Right}>
+          <Buttom clicked={props.clicked}>
+            <MdOpenInNew size={15} />
+            Show
+          </Buttom>
+        </div>
+      </div>
     </div>
   );
 };

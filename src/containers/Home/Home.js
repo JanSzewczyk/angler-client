@@ -1,46 +1,69 @@
-import React, { Component } from "react";
-import { Map, TileLayer, Marker, Popup} from "react-leaflet";
+import React, { createRef, Component } from "react";
+import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import {  fishingTripMarker  } from '../../components/Maps/Markers/FishingTrip/FishingTripMarker';
+import { fishingTripMarker } from "../../components/Maps/Markers/FishingTrip/FishingTripMarker";
 
 class Home extends Component {
-  constructor() {
-    super();
-    this.state = {
-      lat: 51.5,
-      lng: -0.09,
-      zoom: 17
-    };
-  }
+  state = {
+    center: {
+      lat: 51.505,
+      lng: -0.09
+    },
+    marker: {
+      lat: 51.505,
+      lng: -0.09
+    },
+    zoom: 13,
+    draggable: true
+  };
+
+  refmarker = createRef();
+
+  toggleDraggable = () => {
+    this.setState({ draggable: !this.state.draggable });
+  };
+
+  updatePosition = () => {
+    const marker = this.refmarker.current;
+    if (marker != null) {
+      this.setState({
+        marker: marker.leafletElement.getLatLng()
+      });
+
+      console.log(this.state.marker)
+    }
+  };
 
   render() {
-    const position = [this.state.lat, this.state.lng];
+    const position = [this.state.center.lat, this.state.center.lng];
+    const markerPosition = [this.state.marker.lat, this.state.marker.lng];
 
     return (
       <Map
-        center={position}
-        zoom={this.state.zoom}
         style={{
           width: "100%",
-          height: "500px"
+          height: "600px"
         }}
-        maxZoom={19.8}
-        zoomControl={false}
-        dragging={false}
-        scrollWheelZoom={false}
+        center={position}
+        zoom={this.state.zoom}
       >
         <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-       <Marker
-        position={position}
-        icon={ fishingTripMarker }
+        <Marker
+          icon={fishingTripMarker}
+          draggable={this.state.draggable}
+          onDragend={this.updatePosition}
+          position={markerPosition}
+          ref={this.refmarker}
         >
-          <Popup >
-            hejo
+          <Popup minWidth={90}>
+            <span onClick={this.toggleDraggable}>
+              {this.state.draggable ? "DRAG MARKER" : "MARKER FIXED"}
+            </span>
           </Popup>
-      </Marker>
+        </Marker>
       </Map>
     );
   }

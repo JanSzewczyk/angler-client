@@ -1,84 +1,104 @@
 .Header {
-    color: #f4f4f4;
-    background: #1c7b42;
-    border-radius: 8px;
-    padding: 0 8px;
-    margin: 8px 4px 8px 0;
-    height: 48px;
-    position: relative;
-  }
-  
-  .Left {
-    float: left;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    padding-right: 16px;
-    font-weight: 600;
-    font-size: 18px;
-  }
-  
-  .Right {
-      height: 100%;
-    float: right;
-    margin-right: 0;
-    display: flex;
-    align-items: center;
-  }
+  color: #f4f4f4;
+  background: #1c7b42;
+  border-radius: 8px;
+  padding: 0 16px;
+  margin: 8px 4px 8px 0;
+  height: 48px;
+  position: relative;
+}
+.Header .Left {
+  float: left;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding-right: 16px;
+  font-weight: 600;
+  font-size: 18px;
+}
+.Header .Right {
+  height: 100%;
+  float: right;
+  margin-right: 0;
+  display: flex;
+  align-items: center;
+}
 
-  .AddFishingTrip {
-    height: calc(100% - 64px);
-    overflow-y: scroll;
-  }
+.AddFishingTrip {
+  height: calc(100% - 64px);
+  overflow-y: scroll;
+}
 
-  .AddForm {
-    background: #27ab5b;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-flow: row wrap;
-    flex-flow: row wrap;
-    border-radius: 8px;
-    margin-bottom: 8px;
-    min-height: 500px;
-  }
+.AddForm {
+  background: #27ab5b;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  min-height: 400px;
+}
 
-  .InputForm {  
-    flex-basis: 100%;
-    background-clip: padding-box;
-    background: blue;
-    margin-right: 8px;
-    margin-bottom: 8px;
-    height: 500px;
-  }
+.InputForm {
+  flex-basis: 100%;
+  background-clip: padding-box;
+  max-width: 100%;
+  /* max-height: 392px; */
+}
 
-  .InputForm {  
-    flex-basis: 100%;
-    background-clip: padding-box;
-    background: blue;
-    margin-right: 8px;
-    margin-bottom: 8px;
-    height: 500px;
+.MapForm {
+  flex-basis: 100%;
+  background-clip: padding-box;
+  max-width: 100%;
+  /* max-height: 392px; */
+}
+/* BODY */
+.Body {
+  flex: 1;
+  margin: 16px 16px 32px 16px;
+}
+
+.Content {
+  min-height: 200px;
+}
+
+.BottomForm {
+  flex-basis: 100%;
+  background-clip: padding-box;
+  padding: 16px;
+}
+.BottomForm .Left {
+  flex: 1;
+  text-align: right;
+  color: #f4f4f4;
+}
+
+.MapLabel {
+  padding-left: 8px;
+  color: #f4f4f4;
+  /* font-weight: bold; */
+  display: block;
+  margin-top: 32px;
+}
+
+@media only screen and (min-width: 80em) {
+  .InputForm {
+    max-width: 25%;
   }
+  .MapForm {
+    max-width: 75%;
+  }
+}
 
 
-  @media only screen and (min-width: 50em) {
-    .InputForm {
-      max-width: calc(50% - 8px);
-    }
-  }
-  
-  @media only screen and (min-width: 80em) {
-    .InputForm {
-      max-width: calc(33.3333333% - 8px);
-    }
-  }
-  
-  @media only screen and (min-width: 120em) {
-    .InputForm {
-      max-width: calc(50% - 8px);
-    }
-  }
+.Loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

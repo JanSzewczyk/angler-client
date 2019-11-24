@@ -22,7 +22,7 @@ const button = props => {
 
 button.propTypes = {
   clicked: PropTypes.func,
-  disabled: PropTypes.func,
+  disabled: PropTypes.bool,
   btnType: PropTypes.string
 };
 

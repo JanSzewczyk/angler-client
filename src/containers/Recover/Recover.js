@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "../../axios";
 
 import Aux from "../../hoc/Auxiliary/Auxiliary";
-import Input from "../../components/UI/Input/Input";
+import Input from "../../components/UI/Inputs/AnimInput/Input";
 import Button from "../../components/UI/Buttons/AnimButton/AnimButton";
 import ValidMsg from "../../components/UI/ValidMsg/ValidMsg";
 import Spinner from "../../components/UI/Spinner/Spinner";

@@ -1,16 +1,15 @@
 .FishingTripCard {
   /* -ms-flex-preferred-size: 100%; */
   flex-basis: 100%;
-
   background-clip: padding-box;
 
-  /* max-width: 100%; */
+  max-width: 100%;
   background: #27ab5b;
   margin-right: 8px;
   margin-bottom: 8px;
 
   border-radius: 8px;
-  height: 400px;
+  max-height: 392px;
 }
 
 .FishingTripCard:last-child {
@@ -47,26 +46,30 @@
   padding: 8px 8px 24px 8px;
 }
 
-.Head .Left {
+ .Left {
   /* -webkit-box-flex: 1;
   -ms-flex: 1; */
   flex: 1;
   text-align: left;
   color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
 }
 .Title {
   font-size: 16px;
   display: inline-block;
-  margin-right: 8px;
+  /* margin-right: 8px; */
+  padding-bottom: 8px;
 }
 
 .Date {
-  font-size: 12px;
+  font-size: 14px;
   opacity: 0.6;
+  padding-left: 16px;
   display: inline-block;
 }
 
-.Head .Right {
+.Right {
   /* -webkit-box-flex: 0;
   -ms-flex: 0 0 auto; */
   flex: 0 0 auto;
@@ -79,34 +82,32 @@
   /* -webkit-box-flex: 1;
   -ms-flex: 1; */
   flex: 1;
-  margin: 0 16px;
-  margin-bottom: 16px;
-  height: auto;
+  margin: 16px;
 }
 
 .Content {
   width: 100%;
-  min-height: 300px;
+  /* min-height: 300px; */
 }
 
 .Bottom {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-top: 16px;
+  margin: 16px;
   /* -webkit-box-flex: 0;
   -ms-flex: 0 0 auto; */
   flex: 0 0 auto;
 }
-.Bottom .Left {
-  /* -webkit-box-flex: 1;
-  -ms-flex: 1; */
+/* .Bottom .Left {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
   flex: 1;
   text-align: left;
-}
-.Bottom .Right {
-  /* -webkit-box-flex: 1;
-  -ms-flex: 1; */
+} */
+/* .Bottom .Right {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
   flex: 1;
   text-align: right;
-}
+} */
