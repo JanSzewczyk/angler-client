@@ -1,16 +1,3 @@
-.FishingTrips {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-flow: row wrap;
-  flex-flow: row wrap;
-  
-  height: calc(100% - 68px);
-  overflow-y: scroll;
-}
-
 .Header {
   color: #f4f4f4;
   background: #1c7b42;
@@ -33,17 +20,9 @@
 }
 
 .Right {
-    height: 100%;
+  height: 100%;
   float: right;
   margin-right: 0;
   display: flex;
-  align-items: center;
-}
-
-
-.Loading {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
 }

@@ -1,0 +1,14 @@
+.FishingTrip {
+    display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  
+  height: calc(100% - 68px);
+  overflow-y: scroll;
+  }
+
+  

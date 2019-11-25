@@ -1,10 +1,14 @@
 import React, { createRef, Component } from "react";
 import PropTypes from "prop-types";
 import { IoIosArrowBack } from "react-icons/io";
+import { MdLibraryAdd } from "react-icons/md";
+import { FaMapMarkedAlt, FaRegEdit, FaSave } from "react-icons/fa";
 import { Map, TileLayer, Marker } from "react-leaflet";
+
 import { fishingTripMarker } from "../../../components/Maps/Markers/FishingTrip/FishingTripMarker";
 import { connect } from "react-redux";
 import axios from "../../../axios";
+import FishingTripToolbar from "../../../components/FishingTrips/FishingTripToolbar/FishingTripToolbar";
 
 import Button from "../../../components/UI/Buttons/Button/Button";
 import Spinner from "../../../components/UI/Spinner/Spinner";
@@ -72,6 +76,21 @@ class AddFishingTrip extends Component {
         },
         valid: false,
         touched: false
+      },
+      fisheryDescription: {
+        elementType: "textarea",
+        elementConfig: {
+          type: "text"
+        },
+        label: "Description",
+        value: "",
+        validation: {
+          required: true,
+          minLength: 3,
+          maxLength: 255
+        },
+        valid: false,
+        touched: false
       }
     },
     fishery: {
@@ -85,7 +104,7 @@ class AddFishingTrip extends Component {
   addNewTripHandler = () => {
     let data = {};
     for (let key in this.state.fishingTripForm) {
-      if (key !== "fisheryName")
+      if (key !== "fisheryName" && key !== "fisheryDescription")
         data[key] = this.state.fishingTripForm[key].value;
     }
 
@@ -93,6 +112,7 @@ class AddFishingTrip extends Component {
       ...data,
       fishery: {
         name: this.state.fishingTripForm["fisheryName"].value,
+        description: this.state.fishingTripForm["fisheryDescription"].value,
         latitude: this.state.fishery.latitude,
         altitude: this.state.fishery.altitude
       }
@@ -199,35 +219,90 @@ class AddFishingTrip extends Component {
       });
     }
 
-    let form = (
+    let fishingTripForm = (
       <Aux>
-        {formElementArray.map(formElement => (
-          <Input
-            key={formElement.id}
-            label={formElement.config.label}
-            elementType={formElement.config.elementType}
-            elementConfig={formElement.config.elementConfig}
-            value={formElement.config.value}
-            invalid={!formElement.config.valid}
-            shouldValidate={formElement.config.validation}
-            touched={formElement.config.touched}
-            changed={event => this.inputChangedHandler(event, formElement.id)}
-          />
-        ))}
+        {formElementArray.map(formElement => {
+          if (
+            formElement.id !== "fisheryName" &&
+            formElement.id !== "fisheryDescription"
+          ) {
+            return (
+              <Input
+                key={formElement.id}
+                label={formElement.config.label}
+                elementType={formElement.config.elementType}
+                elementConfig={formElement.config.elementConfig}
+                value={formElement.config.value}
+                invalid={!formElement.config.valid}
+                shouldValidate={formElement.config.validation}
+                touched={formElement.config.touched}
+                changed={event =>
+                  this.inputChangedHandler(event, formElement.id)
+                }
+              />
+            );
+          }
+        })}
+      </Aux>
+    );
+
+    let fisheryForm = (
+      <Aux>
+        {formElementArray.map(formElement => {
+          if (
+            formElement.id !== "title" &&
+            formElement.id !== "description" &&
+            formElement.id !== "tripDate"
+          ) {
+            return (
+              <Input
+                key={formElement.id}
+                label={formElement.config.label}
+                elementType={formElement.config.elementType}
+                elementConfig={formElement.config.elementConfig}
+                value={formElement.config.value}
+                invalid={!formElement.config.valid}
+                shouldValidate={formElement.config.validation}
+                touched={formElement.config.touched}
+                changed={event =>
+                  this.inputChangedHandler(event, formElement.id)
+                }
+              />
+            );
+          }
+        })}
       </Aux>
     );
 
     let window = (
       <div className={classes.AddFishingTrip}>
         <div className={classes.AddForm}>
+          <div className={classes.TopForm}>
+            <div className={classes.Left}>
+              <div className={classes.Title}>
+                <MdLibraryAdd size={30} />
+                Add new trip
+              </div>
+            </div>
+          </div>
           <div className={classes.InputForm}>
             <div className={classes.Body}>
-              <div className={classes.Content}>{form}</div>
+              <div className={classes.Content}>
+                <div className={classes.Title}>
+                  <FaRegEdit size={30} />
+                  Fishing Trip
+                </div>
+                {fishingTripForm}
+              </div>
             </div>
           </div>
           <div className={classes.MapForm}>
             <div className={classes.Body}>
               <div className={classes.Content}>
+                <div className={classes.Title}>
+                  <FaMapMarkedAlt size={30} />
+                  Fishing spot
+                </div>
                 <label className={classes.MapLabel}>
                   Mark the fishing spot
                 </label>
@@ -236,7 +311,7 @@ class AddFishingTrip extends Component {
                   zoom={6}
                   style={{
                     width: "100%",
-                    height: "600px"
+                    height: "400px"
                   }}
                   maxZoom={19.8}
                 >
@@ -252,14 +327,26 @@ class AddFishingTrip extends Component {
               </div>
             </div>
           </div>
+          <div className={classes.InputForm}>
+            <div className={classes.Body}>
+              <div className={classes.Content}>
+                <div className={classes.Title}>
+                  <FaRegEdit size={30} />
+                  Fishing spot details
+                </div>
+                {fisheryForm}
+              </div>
+            </div>
+          </div>
           <div className={classes.BottomForm}>
-            <div className={classes.Left}>
+            <div className={classes.Right}>
               <Button clicked={this.props.back}>cancel</Button>
               <Button
                 btnType={"Primary"}
                 clicked={this.addNewTripHandler}
                 disabled={!this.state.formIsValid}
               >
+                <FaSave size={15} />
                 save
               </Button>
             </div>
@@ -277,15 +364,14 @@ class AddFishingTrip extends Component {
     }
     return (
       <Aux>
-        <div className={classes.Header}>
-          <div className={classes.Left}>Add new trip</div>
-          <div className={classes.Right}>
+        <FishingTripToolbar
+          left={
             <Button clicked={this.props.back} disabled={this.state.loading}>
               <IoIosArrowBack size={14} />
               back
             </Button>
-          </div>
-        </div>
+          }
+        />
         {window}
       </Aux>
     );

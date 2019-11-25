@@ -6,6 +6,7 @@ import FishingTripCard from "../../components/FishingTrips/FishingTripCard/Fishi
 import Button from "../../components/UI/Buttons/Button/Button";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import AddFishingTrip from "./AddFishingTrip/AddFishingTrip";
+import FishingTripToolbar from "../../components/FishingTrips/FishingTripToolbar/FishingTripToolbar";
 import axios from "../../axios";
 
 import { connect } from "react-redux";
@@ -27,7 +28,7 @@ class FishingTrips extends Component {
     if (this.state.addTrip === false && prevState.addTrip === true) {
       this.loadFishingTripData();
     }
-}
+  }
 
   loadFishingTripData = () => {
     let config = {
@@ -37,7 +38,7 @@ class FishingTrips extends Component {
     };
 
     this.setState({
-      loading: true,
+      loading: true
     });
 
     axios
@@ -51,7 +52,7 @@ class FishingTrips extends Component {
       .catch(err => {
         console.log(err.response.data);
       });
-  }
+  };
 
   addNewTripHandler = () => {
     this.setState({
@@ -89,18 +90,18 @@ class FishingTrips extends Component {
     return (
       <Aux>
         {this.state.addTrip ? (
-          <AddFishingTrip back={() => this.addNewTripHandler()}/>
+          <AddFishingTrip back={() => this.addNewTripHandler()} />
         ) : (
           <Aux>
-            <div className={classes.Header}>
-              <div className={classes.Left}>Your Fishing Trips</div>
-              <div className={classes.Right}>
+            <FishingTripToolbar
+              left={"Your Fishing Trips"}
+              right={
                 <Button btnType={"Primary"} clicked={this.addNewTripHandler}>
                   <MdLibraryAdd size={14} />
                   ADD new trip
                 </Button>
-              </div>
-            </div>
+              }
+            />
             {content}
           </Aux>
         )}
