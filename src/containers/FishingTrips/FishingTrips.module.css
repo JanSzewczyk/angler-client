@@ -11,35 +11,6 @@
   overflow-y: scroll;
 }
 
-.Header {
-  color: #f4f4f4;
-  background: #1c7b42;
-  border-radius: 8px;
-  padding: 0 16px;
-  margin: 8px 4px 8px 0;
-  height: 48px;
-  position: relative;
-}
-
-.Left {
-  float: left;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  padding-right: 16px;
-  font-weight: 600;
-  font-size: 18px;
-}
-
-.Right {
-    height: 100%;
-  float: right;
-  margin-right: 0;
-  display: flex;
-  align-items: center;
-}
-
 
 .Loading {
   display: flex;

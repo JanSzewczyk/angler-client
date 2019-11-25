@@ -94,7 +94,7 @@ class FishingTrips extends Component {
         ) : (
           <Aux>
             <FishingTripToolbar
-              left={"Your Fishing Trips"}
+              left={<>Your Fishing Trips</>}
               right={
                 <Button btnType={"Primary"} clicked={this.addNewTripHandler}>
                   <MdLibraryAdd size={14} />
