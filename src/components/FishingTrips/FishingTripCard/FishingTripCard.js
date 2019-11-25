@@ -9,7 +9,7 @@ import Buttom from "../../../components/UI/Buttons/Button/Button";
 import classes from "./FishingTripCard.module.css";
 
 const fishingTripCard = props => {
-  const position = [props.data.fishery.altitude, props.data.fishery.altitude];
+  const position = [ props.data.fishery.latitude,props.data.fishery.altitude];
 
   return (
     <div className={classes.FishingTripCard}>
@@ -29,7 +29,7 @@ const fishingTripCard = props => {
         <div className={classes.Content}>
           <Map
             center={position}
-            zoom={17}
+            zoom={13}
             maxZoom={19.8}
             style={{
               width: "100%",

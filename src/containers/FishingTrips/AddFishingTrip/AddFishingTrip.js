@@ -4,6 +4,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import { Map, TileLayer, Marker } from "react-leaflet";
 import { fishingTripMarker } from "../../../components/Maps/Markers/FishingTrip/FishingTripMarker";
 import { connect } from "react-redux";
+import axios from "../../../axios";
 
 import Button from "../../../components/UI/Buttons/Button/Button";
 import Spinner from "../../../components/UI/Spinner/Spinner";
@@ -77,7 +78,6 @@ class AddFishingTrip extends Component {
       latitude: 50.86346212847674,
       altitude: 23.09660911560059
     },
-    // draggable: true,
     formIsValid: false,
     loading: false
   };
@@ -97,11 +97,25 @@ class AddFishingTrip extends Component {
         altitude: this.state.fishery.altitude
       }
     };
-    console.log(data);
+
     this.setState({
       loading: true
     });
-    // this.props.onSignup(data);
+
+    let config = {
+      headers: {
+        Authorization: this.props.tokenType + " " + this.props.token
+      }
+    };
+
+    axios
+      .post("/trip", data, config)
+      .then(res => {
+        this.props.back();
+      })
+      .catch(err => {
+        console.log(err.response.data);
+      });
   };
 
   checkValidity(value, rules) {
@@ -151,18 +165,12 @@ class AddFishingTrip extends Component {
         updatedFishingTripForm[inputIdentifier].valid && formIsValid;
     }
 
-    console.log(this.state.formIsValid);
-
     this.setState({
       fishingTripForm: updatedFishingTripForm,
       formIsValid: formIsValid
     });
   };
 
-  // toggleDraggable = () => {
-  //   this.setState({ draggable: !this.state.draggable });
-  //   console.log("Chuj wie co robi")
-  // };
   refFishery = createRef();
   updatePosition = () => {
     const coordinates = this.refFishery.current;
@@ -174,7 +182,6 @@ class AddFishingTrip extends Component {
         }
       });
     }
-    console.log(this.state.fishery);
   };
 
   render() {
@@ -232,9 +239,6 @@ class AddFishingTrip extends Component {
                     height: "600px"
                   }}
                   maxZoom={19.8}
-                  // zoomControl={false}
-                  // dragging={false}
-                  // scrollWheelZoom={false} {lat: 50.86346212847674, lng: 23.09660911560059}
                 >
                   <TileLayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
                   <Marker
@@ -243,15 +247,7 @@ class AddFishingTrip extends Component {
                     onDragend={this.updatePosition}
                     position={markerPosition}
                     ref={this.refFishery}
-                  >
-                    {/* <Popup minWidth={90}>
-                      <span onClick={this.toggleDraggable}>
-                        {this.state.draggable
-                          ? "DRAG MARKER"
-                          : "MARKER FIXED"}
-                      </span>
-                    </Popup> */}
-                  </Marker>
+                  ></Marker>
                 </Map>
               </div>
             </div>
@@ -284,8 +280,7 @@ class AddFishingTrip extends Component {
         <div className={classes.Header}>
           <div className={classes.Left}>Add new trip</div>
           <div className={classes.Right}>
-            <Button clicked={this.props.back} disabled={this.state.login
-            }>
+            <Button clicked={this.props.back} disabled={this.state.loading}>
               <IoIosArrowBack size={14} />
               back
             </Button>
@@ -301,4 +296,11 @@ AddFishingTrip.propTypes = {
   back: PropTypes.func.isRequired
 };
 
-export default AddFishingTrip;
+const mapStateToProps = state => {
+  return {
+    token: state.auth.token,
+    tokenType: state.auth.tokenType
+  };
+};
+
+export default connect(mapStateToProps)(AddFishingTrip);

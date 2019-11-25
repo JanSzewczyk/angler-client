@@ -14,17 +14,32 @@ import classes from "./FishingTrips.module.css";
 
 class FishingTrips extends Component {
   state = {
-    addTrip: true,
-    loading: true,
+    addTrip: false,
+    loading: false,
     fishingTrips: []
   };
 
   componentDidMount() {
+    this.loadFishingTripData();
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.state.addTrip === false && prevState.addTrip === true) {
+      this.loadFishingTripData();
+    }
+}
+
+  loadFishingTripData = () => {
     let config = {
       headers: {
         Authorization: this.props.tokenType + " " + this.props.token
       }
     };
+
+    this.setState({
+      loading: true,
+    });
+
     axios
       .get("/trip", config)
       .then(res => {
