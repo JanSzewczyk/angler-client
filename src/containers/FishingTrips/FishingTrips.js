@@ -5,7 +5,6 @@ import Aux from "../../hoc/Auxiliary/Auxiliary";
 import FishingTripCard from "../../components/FishingTrips/FishingTripCard/FishingTripCard";
 import Button from "../../components/UI/Buttons/Button/Button";
 import Spinner from "../../components/UI/Spinner/Spinner";
-import AddFishingTrip from "./AddFishingTrip/AddFishingTrip";
 import FishingTripToolbar from "../../components/FishingTrips/FishingTripToolbar/FishingTripToolbar";
 import axios from "../../axios";
 
@@ -15,7 +14,6 @@ import classes from "./FishingTrips.module.css";
 
 class FishingTrips extends Component {
   state = {
-    addTrip: false,
     loading: false,
     fishingTrips: []
   };
@@ -24,11 +22,11 @@ class FishingTrips extends Component {
     this.loadFishingTripData();
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.state.addTrip === false && prevState.addTrip === true) {
-      this.loadFishingTripData();
-    }
-  }
+  // componentDidUpdate(prevProps, prevState, snapshot) {
+  //   if (this.state.addTrip === false && prevState.addTrip === true) {
+  //     this.loadFishingTripData();
+  //   }
+  // }
 
   loadFishingTripData = () => {
     let config = {
@@ -55,9 +53,12 @@ class FishingTrips extends Component {
   };
 
   addNewTripHandler = () => {
-    this.setState({
-      addTrip: !this.state.addTrip
-    });
+    this.props.history.push("/trips/addTrip");
+  };
+
+  editTripHandler = id => {
+    console.log(id);
+    this.props.history.push("/trips/edit/" + id);
   };
 
   fishingTripSelectHandler = id => {
@@ -65,9 +66,7 @@ class FishingTrips extends Component {
   };
 
   render() {
-    let content = null;
-
-    content = (
+    let content = (
       <div className={classes.Loading}>
         <Spinner />
       </div>
@@ -80,7 +79,8 @@ class FishingTrips extends Component {
             <FishingTripCard
               key={trip.id}
               data={trip}
-              clicked={() => this.fishingTripSelectHandler(trip.id)}
+              onEdit={() => this.editTripHandler(trip.id)}
+              onShow={() => this.fishingTripSelectHandler(trip.id)}
             />
           ))}
         </div>
@@ -89,22 +89,16 @@ class FishingTrips extends Component {
 
     return (
       <Aux>
-        {this.state.addTrip ? (
-          <AddFishingTrip back={() => this.addNewTripHandler()} />
-        ) : (
-          <Aux>
-            <FishingTripToolbar
-              left={<>Your Fishing Trips</>}
-              right={
-                <Button btnType={"Primary"} clicked={this.addNewTripHandler}>
-                  <MdLibraryAdd size={14} />
-                  ADD new trip
-                </Button>
-              }
-            />
-            {content}
-          </Aux>
-        )}
+        <FishingTripToolbar
+          left={<>Your Fishing Trips</>}
+          right={
+            <Button btnType={"Primary"} clicked={this.addNewTripHandler}>
+              <MdLibraryAdd size={14} />
+              ADD new trip
+            </Button>
+          }
+        />
+        {content}
       </Aux>
     );
   }

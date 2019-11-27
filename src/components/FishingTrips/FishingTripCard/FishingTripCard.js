@@ -48,7 +48,11 @@ const fishingTripCard = props => {
           <div className={classes.Date}>{props.data.tripDate}</div>
         </div>
         <div className={classes.Right}>
-          <Buttom clicked={props.clicked}>
+        <Buttom btnType={"Primary"} clicked={props.onEdit}>
+            <MdOpenInNew size={15} />
+            edit
+          </Buttom>
+          <Buttom clicked={props.onShow}>
             <MdOpenInNew size={15} />
             Show
           </Buttom>
@@ -60,7 +64,8 @@ const fishingTripCard = props => {
 
 fishingTripCard.propTypes = {
   data: PropTypes.object.isRequired,
-  clicked: PropTypes.func.isRequired
+  onEdit: PropTypes.func.isRequired,
+  onShow: PropTypes.func.isRequired
 };
 
 export default fishingTripCard;

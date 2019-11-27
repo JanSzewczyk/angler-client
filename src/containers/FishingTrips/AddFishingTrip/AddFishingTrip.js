@@ -1,19 +1,17 @@
 import React, { createRef, Component } from "react";
-import PropTypes from "prop-types";
 import { IoIosArrowBack } from "react-icons/io";
-import { MdLibraryAdd } from "react-icons/md";
-import { FaMapMarkedAlt, FaRegEdit, FaSave } from "react-icons/fa";
+import { MdLibraryAdd, MdEdit, MdRemoveCircle } from "react-icons/md";
+import { FaMapMarkedAlt, FaRegEdit, FaSave, FaMap } from "react-icons/fa";
 import { Map, TileLayer, Marker } from "react-leaflet";
 
 import { fishingTripMarker } from "../../../components/Maps/Markers/FishingTrip/FishingTripMarker";
 import { connect } from "react-redux";
 import axios from "../../../axios";
 import FishingTripToolbar from "../../../components/FishingTrips/FishingTripToolbar/FishingTripToolbar";
-
 import Button from "../../../components/UI/Buttons/Button/Button";
-import Spinner from "../../../components/UI/Spinner/Spinner";
 import Aux from "../../../hoc/Auxiliary/Auxiliary";
 import Input from "../../../components/UI/Inputs/Input/Input";
+import Loading from "../../../components/FishingTrips/Loading/Loading";
 
 import classes from "./AddFishingTrip.module.css";
 
@@ -98,7 +96,149 @@ class AddFishingTrip extends Component {
       altitude: 23.09660911560059
     },
     formIsValid: false,
-    loading: false
+    loading: false,
+    editMode: false,
+    tripId: null,
+    fisheryId: null
+  };
+
+  componentDidMount() {
+    if (this.props.match.params.id) {
+      this.setState({
+        loading: true,
+        editMode: true
+      });
+
+      this.getTripData(this.props.match.params.id);
+    }
+  }
+
+  getTripData = id => {
+    let config = {
+      headers: {
+        Authorization: this.props.tokenType + " " + this.props.token
+      }
+    };
+
+    axios
+      .get("/trip/" + id, config)
+      .then(res => {
+        this.setState({
+          fishingTripForm: this.fillInputs(res.data),
+          fishery: {
+            latitude: res.data.fishery.latitude,
+            altitude: res.data.fishery.altitude
+          },
+          tripId: res.data.id,
+          fisheryId: res.data.fishery.id,
+          loading: false
+        });
+      })
+      .catch(err => {
+        this.setState({
+          redirect: true
+        });
+      });
+  };
+
+  fillInputs = data => {
+    const fillData = {};
+    for (let key in this.state.fishingTripForm) {
+      if (key !== "fisheryName" && key !== "fisheryDescription") {
+        fillData[key] = {
+          ...this.state.fishingTripForm[key],
+          value: data[key],
+          valid: true
+        };
+      } else {
+        if (key === "fisheryName") {
+          fillData[key] = {
+            ...this.state.fishingTripForm[key],
+            value: data.fishery.name,
+            valid: true
+          };
+        }
+        if (key === "fisheryDescription") {
+          fillData[key] = {
+            ...this.state.fishingTripForm[key],
+            value: data.fishery.description,
+            valid: true
+          };
+        }
+      }
+    }
+
+    return fillData;
+  };
+
+  updateTripHandler = () => {
+    let data = {};
+    for (let key in this.state.fishingTripForm) {
+      if (key !== "fisheryName" && key !== "fisheryDescription")
+        data[key] = this.state.fishingTripForm[key].value;
+    }
+
+    data = {
+      ...data,
+      id: this.state.tripId,
+      fishery: {
+        id: this.state.fisheryId,
+        name: this.state.fishingTripForm["fisheryName"].value,
+        description: this.state.fishingTripForm["fisheryDescription"].value,
+        latitude: this.state.fishery.latitude,
+        altitude: this.state.fishery.altitude
+      }
+    };
+
+    let config = {
+      headers: {
+        Authorization: this.props.tokenType + " " + this.props.token
+      }
+    };
+
+    this.setState({
+      loading: true
+    });
+
+    axios
+      .put("/trip", data, config)
+      .then(res => {
+        console.log("update");
+        this.setState({
+          loading: false
+        });
+      })
+      .catch(err => {
+        this.setState({
+          loading: false
+        });
+        console.log("error");
+        this.backToFishingList();
+      });
+  };
+
+  removeTripHandler = () => {
+    let config = {
+      headers: {
+        Authorization: this.props.tokenType + " " + this.props.token
+      }
+    };
+    this.setState({
+      loading: true
+    });
+
+    axios
+      .delete("/trip/" + this.state.tripId, config)
+      .then(res => {
+        this.backToFishingList();
+        console.log("remove");
+        //notification
+      })
+      .catch(err => {
+        this.backToFishingList();
+        console.log("error");
+        //notification
+      });
   };
 
   addNewTripHandler = () => {
@@ -118,23 +258,24 @@ class AddFishingTrip extends Component {
       }
     };
 
-    this.setState({
-      loading: true
-    });
-
     let config = {
       headers: {
         Authorization: this.props.tokenType + " " + this.props.token
       }
     };
 
+    this.setState({
+      loading: true
+    });
+
     axios
       .post("/trip", data, config)
       .then(res => {
-        this.props.back();
+        this.backToFishingList();
       })
       .catch(err => {
         console.log(err.response.data);
+        this.backToFishingList();
       });
   };
 
@@ -204,6 +345,10 @@ class AddFishingTrip extends Component {
     }
   };
 
+  backToFishingList = () => {
+    this.props.history.push("/trips");
+  };
+
   render() {
     // Marker position
     const markerPosition = [
@@ -221,56 +366,52 @@ class AddFishingTrip extends Component {
 
     let fishingTripForm = (
       <Aux>
-        {formElementArray.map(formElement => {
-          if (
-            formElement.id !== "fisheryName" &&
-            formElement.id !== "fisheryDescription"
-          ) {
+        {formElementArray
+          .filter(formElement => {
             return (
-              <Input
-                key={formElement.id}
-                label={formElement.config.label}
-                elementType={formElement.config.elementType}
-                elementConfig={formElement.config.elementConfig}
-                value={formElement.config.value}
-                invalid={!formElement.config.valid}
-                shouldValidate={formElement.config.validation}
-                touched={formElement.config.touched}
-                changed={event =>
-                  this.inputChangedHandler(event, formElement.id)
-                }
-              />
+              formElement.id !== "fisheryName" &&
+              formElement.id !== "fisheryDescription"
             );
-          }
-        })}
+          })
+          .map(formElement => (
+            <Input
+              key={formElement.id}
+              label={formElement.config.label}
+              elementType={formElement.config.elementType}
+              elementConfig={formElement.config.elementConfig}
+              value={formElement.config.value}
+              invalid={!formElement.config.valid}
+              shouldValidate={formElement.config.validation}
+              touched={formElement.config.touched}
+              changed={event => this.inputChangedHandler(event, formElement.id)}
+            />
+          ))}
       </Aux>
     );
 
     let fisheryForm = (
       <Aux>
-        {formElementArray.map(formElement => {
-          if (
-            formElement.id !== "title" &&
-            formElement.id !== "description" &&
-            formElement.id !== "tripDate"
-          ) {
+        {formElementArray
+          .filter(formElement => {
             return (
-              <Input
-                key={formElement.id}
-                label={formElement.config.label}
-                elementType={formElement.config.elementType}
-                elementConfig={formElement.config.elementConfig}
-                value={formElement.config.value}
-                invalid={!formElement.config.valid}
-                shouldValidate={formElement.config.validation}
-                touched={formElement.config.touched}
-                changed={event =>
-                  this.inputChangedHandler(event, formElement.id)
-                }
-              />
+              formElement.id !== "title" &&
+              formElement.id !== "description" &&
+              formElement.id !== "tripDate"
             );
-          }
-        })}
+          })
+          .map(formElement => (
+            <Input
+              key={formElement.id}
+              label={formElement.config.label}
+              elementType={formElement.config.elementType}
+              elementConfig={formElement.config.elementConfig}
+              value={formElement.config.value}
+              invalid={!formElement.config.valid}
+              shouldValidate={formElement.config.validation}
+              touched={formElement.config.touched}
+              changed={event => this.inputChangedHandler(event, formElement.id)}
+            />
+          ))}
       </Aux>
     );
 
@@ -280,8 +421,17 @@ class AddFishingTrip extends Component {
           <div className={classes.TopForm}>
             <div className={classes.Left}>
               <div className={classes.Title}>
-                <MdLibraryAdd size={30} />
-                Add new trip
+                {this.state.editMode ? (
+                  <>
+                    <FaRegEdit size={30} />
+                    Edit your trip
+                  </>
+                ) : (
+                  <>
+                    <MdLibraryAdd size={30} />
+                    Add new trip
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -289,7 +439,7 @@ class AddFishingTrip extends Component {
             <div className={classes.Body}>
               <div className={classes.Content}>
                 <div className={classes.Title}>
-                  <FaRegEdit size={30} />
+                  <MdEdit size={30} />
                   Fishing Trip
                 </div>
                 {fishingTripForm}
@@ -331,7 +481,7 @@ class AddFishingTrip extends Component {
             <div className={classes.Body}>
               <div className={classes.Content}>
                 <div className={classes.Title}>
-                  <FaRegEdit size={30} />
+                  <FaMap size={30} />
                   Fishing spot details
                 </div>
                 {fisheryForm}
@@ -340,15 +490,32 @@ class AddFishingTrip extends Component {
           </div>
           <div className={classes.BottomForm}>
             <div className={classes.Right}>
-              <Button clicked={this.props.back}>cancel</Button>
-              <Button
-                btnType={"Primary"}
-                clicked={this.addNewTripHandler}
-                disabled={!this.state.formIsValid}
-              >
-                <FaSave size={15} />
-                save
-              </Button>
+              <Button clicked={this.backToFishingList}>cancel</Button>
+              {this.state.editMode ? (
+                <>
+                  <Button btnType={"Warming"} clicked={this.removeTripHandler}>
+                    <MdRemoveCircle size={15} />
+                    remove
+                  </Button>
+                  <Button
+                    btnType={"Primary"}
+                    clicked={this.updateTripHandler}
+                    disabled={!this.state.formIsValid}
+                  >
+                    <FaSave size={15} />
+                    update trip
+                  </Button>
+                </>
+              ) : (
+                <Button
+                  btnType={"Primary"}
+                  clicked={this.addNewTripHandler}
+                  disabled={!this.state.formIsValid}
+                >
+                  <FaSave size={15} />
+                  save
+                </Button>
+              )}
             </div>
           </div>
         </div>
@@ -356,17 +523,17 @@ class AddFishingTrip extends Component {
     );
 
     if (this.state.loading) {
-      window = (
-        <div className={classes.Loading}>
-          <Spinner />
-        </div>
-      );
+      window = <Loading />;
     }
+
     return (
       <Aux>
         <FishingTripToolbar
           left={
-            <Button clicked={this.props.back} disabled={this.state.loading}>
+            <Button
+              clicked={this.backToFishingList}
+              disabled={this.state.loading}
+            >
               <IoIosArrowBack size={14} />
               back
             </Button>
@@ -379,7 +546,7 @@ class AddFishingTrip extends Component {
 }
 
 AddFishingTrip.propTypes = {
-  back: PropTypes.func.isRequired
+  // editable: PropTypes.bool
 };
 
 const mapStateToProps = state => {

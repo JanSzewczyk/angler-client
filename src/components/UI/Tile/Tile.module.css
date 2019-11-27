@@ -1,0 +1,130 @@
+.Tile {
+  /* -ms-flex-preferred-size: 100%; */
+  flex-basis: 100%;
+  background-clip: padding-box;
+  max-width: 100%;
+  background: #27ab5b;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  min-height: 200px;
+}
+
+@media only screen and (min-width: 45em) {
+  .SM-3 {
+    max-width: calc(25% - 8px);
+  }
+  .SM-4 {
+    max-width: calc(33.3333333% - 8px);
+  }
+  .SM-6 {
+    max-width: calc(50% - 8px);
+  }
+  .SM-8 {
+    max-width: calc(66.6666666% - 8px);
+  }
+  .SM-9 {
+    max-width: calc(75% - 8px);
+  }
+  .SM-12 {
+    max-width: 100%;
+    border-right: 0;
+  }
+}
+@media only screen and (min-width: 70em) {
+  .MD-3 {
+    max-width: calc(25% - 8px);
+  }
+  .MD-4 {
+    max-width: calc(33.3333333% - 8px);
+  }
+
+  .MD-6 {
+    max-width: calc(50% - 8px);
+  }
+
+  .MD-8 {
+    max-width: calc(66.6666666% - 8px);
+  }
+  .MD-9 {
+    max-width: calc(75% - 8px);
+  }
+  .MD-12 {
+    max-width: 100%;
+    border-right: 0;
+  }
+}
+@media only screen and (min-width: 100em) {
+  .XL-3 {
+    max-width: calc(25% - 8px);
+  }
+  .XL-4 {
+    max-width: calc(33.3333333% - 8px);
+  }
+  .XL-6 {
+    max-width: calc(50% - 8px);
+  }
+
+  .XL-8 {
+    max-width: calc(66.6666666% - 8px);
+  }
+  .XL-9 {
+    max-width: calc(75% - 8px);
+  }
+
+  .XL-12 {
+    max-width: 100%;
+    border-right: 0;
+  }
+}
+
+/* TOP */
+.Top {
+  flex: 0 0 auto;
+  margin-top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 8px 8px 24px 8px;
+}
+
+.Left {
+  flex: 1;
+  text-align: left;
+  font-size: 16px;
+  color: #f4f4f4;
+  display: flex;
+  /* flex-direction: column; */
+}
+.Right {
+  flex: 0 0 auto;
+  font-size: 16px;
+  text-align: right;
+}
+
+/* BODY */
+.Body {
+  flex: 1;
+  margin: 16px;
+}
+
+.Content {
+  width: 100%;
+}
+
+/* BOTTOM */
+.Bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 16px;
+  flex: 0 0 auto;
+}
+.Bottom .Left {
+  flex: 1;
+  text-align: left;
+}
+.Bottom .Right {
+  flex: 1;
+  text-align: right;
+}
