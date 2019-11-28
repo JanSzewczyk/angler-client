@@ -23,7 +23,7 @@ const tile = props => {
       </div>
       <div className={classes.Bottom}>
         <div className={classes.Left}>{props.botLeft}</div>
-        <div className={classes.Right}>{props.botLeft}</div>
+        <div className={classes.Right}>{props.botRight}</div>
       </div>
     </div>
   );
@@ -32,7 +32,11 @@ const tile = props => {
 tile.propTypes = {
   sm: PropTypes.string.isRequired,
   md: PropTypes.string.isRequired,
-  xl: PropTypes.string.isRequired
+  xl: PropTypes.string.isRequired,
+  topLeft: PropTypes.element,
+  topRight: PropTypes.element,
+  botLeft: PropTypes.element,
+  botbotRightLeft: PropTypes.element
 };
 
 export default tile;

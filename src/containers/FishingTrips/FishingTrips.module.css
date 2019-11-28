@@ -10,11 +10,3 @@
   height: calc(100% - 68px);
   overflow-y: scroll;
 }
-
-
-.Loading {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}

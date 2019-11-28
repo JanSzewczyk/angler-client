@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { IoIosArrowBack, IoMdText } from "react-icons/io";
 import { FaMapMarkedAlt, FaMap } from "react-icons/fa";
-import { Map, TileLayer, Marker} from "react-leaflet";
+import { GiFishing } from "react-icons/gi";
+import { MdLibraryAdd, MdAccessTime } from "react-icons/md";
+import { Map, TileLayer, Marker } from "react-leaflet";
+import { fishingTripMarker } from "../../../components/Maps/Markers/FishingTrip/FishingTripMarker";
 import { Redirect } from "react-router-dom";
 
 import axios from "../../../axios";
@@ -10,7 +13,8 @@ import FishingTripToolbar from "../../../components/FishingTrips/FishingTripTool
 import Button from "../../../components/UI/Buttons/Button/Button";
 import Tile from "../../../components/UI/Tile/Tile";
 import Loading from "../../../components/FishingTrips/Loading/Loading";
-import { fishingTripMarker } from "../../../components/Maps/Markers/FishingTrip/FishingTripMarker";
+import FishList from "../../../components/FishingTrips/FishingTrip/FishList/FishList";
+import TimeLine from "../../../components/FishingTrips/FishingTrip/TimeLine/TimeLine";
 
 import { connect } from "react-redux";
 
@@ -61,7 +65,7 @@ class FishingTrip extends Component {
       });
   };
 
-  goBack = () => {
+  backToTripList = () => {
     this.setState({
       redirect: true
     });
@@ -71,16 +75,13 @@ class FishingTrip extends Component {
     let window = <Loading />;
 
     if (!this.state.loading) {
+      let trophyData = this.state.tripData.trophies;
+
       window = (
         <div className={classes.FishingTrip}>
-          {/* <div className={classes.TripDetails}>trip details</div>
-        <div className={classes.FisheryMap}>map</div>
-        <div className={classes.FisheryDetails}>map</div>
-        <div className={classes.FishHistory}>fish history</div>
-        <div className={classes.Fishes}>fishes</div> */}
           <Tile
-            sm={"SM-6"}
-            md={"MD-4"}
+            sm={"SM-4"}
+            md={"MD-3"}
             xl={"XL-3"}
             topLeft={
               <>
@@ -101,8 +102,8 @@ class FishingTrip extends Component {
             </div>
           </Tile>
           <Tile
-            sm={"SM-6"}
-            md={"MD-4"}
+            sm={"SM-8"}
+            md={"MD-6"}
             xl={"XL-6"}
             topLeft={
               <>
@@ -114,7 +115,7 @@ class FishingTrip extends Component {
             <Map
               style={{
                 width: "100%",
-                height: "350px"
+                height: "400px"
               }}
               center={[
                 this.state.tripData.fishery.latitude,
@@ -130,13 +131,12 @@ class FishingTrip extends Component {
                   this.state.tripData.fishery.latitude,
                   this.state.tripData.fishery.altitude
                 ]}
-                ref={this.refmarker}
               ></Marker>
             </Map>
           </Tile>
           <Tile
             sm={"SM-6"}
-            md={"MD-4"}
+            md={"MD-3"}
             xl={"XL-3"}
             topLeft={
               <>
@@ -156,11 +156,37 @@ class FishingTrip extends Component {
               </div>
             </div>
           </Tile>
-          <Tile sm={"SM-6"} md={"MD-4"} xl={"XL-3"}>
-            fishes
+          <Tile
+            sm={"SM-6"}
+            md={"MD-4"}
+            xl={"XL-3"}
+            topLeft={
+              <>
+                <GiFishing size={16} />
+                Your trophy list
+              </>
+            }
+            topRight={
+              <Button btnType={"Primary"}>
+                <MdLibraryAdd size={14} />
+                add trophy
+              </Button>
+            }
+          >
+            <FishList fishes={trophyData} />
           </Tile>
-          <Tile sm={"SM-6"} md={"MD-4"} xl={"XL-3"}>
-            history fishes
+          <Tile
+            sm={"SM-6"}
+            md={"MD-4"}
+            xl={"XL-3"}
+            topLeft={
+              <>
+                <MdAccessTime size={16} />
+                Trophies caught time line
+              </>
+            }
+          >
+            <TimeLine fishes={trophyData} />
           </Tile>
         </div>
       );
@@ -174,7 +200,7 @@ class FishingTrip extends Component {
       <Aux>
         <FishingTripToolbar
           left={
-            <Button clicked={this.goBack}>
+            <Button clicked={this.backToTripList}>
               <IoIosArrowBack size={14} />
               back
             </Button>

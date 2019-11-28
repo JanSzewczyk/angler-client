@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Map, TileLayer, Marker } from "react-leaflet";
-import { MdOpenInNew } from "react-icons/md";
-import { fishingTripMarker } from "../../../components/Maps/Markers/FishingTrip/FishingTripMarker";
+import {FaRegEdit, FaEye} from "react-icons/fa"
 
+import { fishingTripMarker } from "../../../components/Maps/Markers/FishingTrip/FishingTripMarker";
 import Buttom from "../../../components/UI/Buttons/Button/Button";
 
 import classes from "./FishingTripCard.module.css";
@@ -13,18 +13,6 @@ const fishingTripCard = props => {
 
   return (
     <div className={classes.FishingTripCard}>
-      {/* <div className={classes.Head}>
-        <div className={classes.Left}>
-          <div className={classes.Title}>{props.data.title}</div>
-          <div className={classes.Date}>{props.data.tripDate}</div>
-        </div>
-        <div className={classes.Right}>
-          <Buttom clicked={props.clicked}>
-            <MdOpenInNew size={15}/>
-            Show
-            </Buttom>
-        </div>
-      </div> */}
       <div className={classes.Body}>
         <div className={classes.Content}>
           <Map
@@ -49,12 +37,12 @@ const fishingTripCard = props => {
         </div>
         <div className={classes.Right}>
         <Buttom btnType={"Primary"} clicked={props.onEdit}>
-            <MdOpenInNew size={15} />
+            <FaRegEdit size={15} />
             edit
           </Buttom>
           <Buttom clicked={props.onShow}>
-            <MdOpenInNew size={15} />
-            Show
+            <FaEye size={15} />
+            show
           </Buttom>
         </div>
       </div>

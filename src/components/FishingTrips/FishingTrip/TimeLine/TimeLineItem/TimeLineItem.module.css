@@ -1,0 +1,43 @@
+.TimeLineItem {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  color: #f4f4f4;
+  padding-left: 32px;
+  font-size: 14px;
+}
+.TimeLineItem:before {
+  display: inline-block;
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  border: 2px solid #20618b;
+  border-radius: 50%;
+  background: #27ab5b;
+  z-index: 1;
+}
+.TimeLineItem:after {
+  content: "";
+  border-left: 2px solid #20618b;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 9px;
+  z-index: 0;
+}
+.TimeLineItem:last-child:after {
+  content: none;
+}
+
+.Hour {
+  margin: 2px 0;
+  opacity: 0.6;
+  display: inline-block;
+}
+
+.Info {
+  margin: 8px;
+}

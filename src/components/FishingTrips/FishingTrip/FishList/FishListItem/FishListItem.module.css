@@ -1,0 +1,64 @@
+.FishListItem {
+  list-style: none;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  min-height: 42px;
+  color: #f4f4f4;
+  width: 100%;
+  padding: 8px 0;
+}
+.FishListItem:hover {
+    background: #239b53;
+}
+
+.Item {
+  padding: 0 4px;
+  display: flex;
+  flex-direction: column;
+  width: 26%;
+  font-size: 14px;
+  text-align: center;
+}
+
+.Item .Type {
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.Item .Value {
+  opacity: 0.6;
+  display: inline-block;
+}
+
+.ActionRemove,
+.ActionEdit {
+  padding: 0 8px;
+  box-sizing: border-box;
+  display: block;
+  width: 15%;
+  cursor: pointer;
+}
+.ActionEdit:hover {
+  color: #2f8ecb;
+}
+.ActionRemove:hover {
+  color: #cb2f40;
+}
+
+.ActionEdit svg,
+.ActionRemove svg {
+  margin: 0;
+  padding: 0;
+}
+
+.Line {
+  margin: 0 16px;
+  border-bottom: 1px solid #f4f4f4;
+  box-shadow: 0 1px 2px rgba(255, 255, 255, 0.1);
+  opacity: 0.8;
+  width: calc(100% - 32px);
+}
+.Line:last-of-type {
+  display: none;
+}

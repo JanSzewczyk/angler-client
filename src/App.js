@@ -16,7 +16,7 @@ import ChangePassword from "./containers/Recover/ChangePassword/ChangePassword";
 import Home from "./containers/Home/Home";
 import FishingTrips from "./containers/FishingTrips/FishingTrips";
 import FishingTrip from "./containers/FishingTrips/FishingTrip/FishingTrip";
-import AddFishingTrip from "./containers/FishingTrips/AddFishingTrip/AddFishingTrip";
+import ActionFishingTrip from "./containers/FishingTrips/ActionFishingTrip/ActionFishingTrip";
 import Aux from "./hoc/Auxiliary/Auxiliary";
 
 class App extends Component {
@@ -33,8 +33,8 @@ class App extends Component {
               {/* <Route path={"/trips/edit/:id"}>
                 <AddFishingTrip editable />
               </Route> */}
-              <Route path={"/trips/addTrip"} component={AddFishingTrip} />
-              <Route path={"/trips/edit/:id"} component={AddFishingTrip} />
+              <Route path={"/trips/addTrip"} component={ActionFishingTrip} />
+              <Route path={"/trips/edit/:id"} component={ActionFishingTrip} />
               <Route path={"/trips/:id"} exact component={FishingTrip} />
 
               <Route path="/trips" component={FishingTrips} />

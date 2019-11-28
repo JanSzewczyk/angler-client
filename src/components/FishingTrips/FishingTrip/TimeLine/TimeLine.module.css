@@ -1,0 +1,9 @@
+.TimeLine {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-flow: column;
+    height: 300px;
+    overflow-y: scroll;
+}

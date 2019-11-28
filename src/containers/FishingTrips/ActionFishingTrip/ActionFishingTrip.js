@@ -13,9 +13,9 @@ import Aux from "../../../hoc/Auxiliary/Auxiliary";
 import Input from "../../../components/UI/Inputs/Input/Input";
 import Loading from "../../../components/FishingTrips/Loading/Loading";
 
-import classes from "./AddFishingTrip.module.css";
+import classes from "./ActionFishingTrip.module.css";
 
-class AddFishingTrip extends Component {
+class ActionFishingTrip extends Component {
   state = {
     fishingTripForm: {
       title: {
@@ -545,7 +545,7 @@ class AddFishingTrip extends Component {
   }
 }
 
-AddFishingTrip.propTypes = {
+ActionFishingTrip.propTypes = {
   // editable: PropTypes.bool
 };
 
@@ -556,4 +556,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(AddFishingTrip);
+export default connect(mapStateToProps)(ActionFishingTrip);

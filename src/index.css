@@ -28,3 +28,24 @@ button {
 .react-icons {
   vertical-align: middle;
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+  /* background: #f1f1f1;  */
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #2f8ecb ; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #20618b; 
+}
