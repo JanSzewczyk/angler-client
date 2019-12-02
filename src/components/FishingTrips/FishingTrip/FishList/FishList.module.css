@@ -5,6 +5,6 @@
     display: flex;
     flex-flow: column;
     align-items: center;
-    height: 400px;
+    max-height: 400px;
     overflow-y: scroll;
 }

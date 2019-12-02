@@ -4,6 +4,6 @@
     list-style: none;
     display: flex;
     flex-flow: column;
-    height: 300px;
+    max-height: 400px;
     overflow-y: scroll;
 }

@@ -22,10 +22,10 @@ const FishListItem = props => {
           <div className={classes.Type}>length</div>
           <div className={classes.Value}>{props.fish.length}cm</div>
         </div>
-        <div className={classes.ActionEdit}>
+        <div className={classes.ActionEdit} onClick={props.onEdit}>
           <MdEdit size={25} />
         </div>
-        <div className={classes.ActionRemove}>
+        <div className={classes.ActionRemove} onClick={props.onDelete}>
           <MdRemoveCircle size={25} />
         </div>
       </li>
@@ -35,6 +35,8 @@ const FishListItem = props => {
 };
 
 FishListItem.propTypes = {
+  onEdit: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
   fish: PropTypes.object.isRequired
 };
 

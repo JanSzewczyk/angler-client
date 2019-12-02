@@ -5,13 +5,14 @@ import { FaMapMarkedAlt, FaRegEdit, FaSave, FaMap } from "react-icons/fa";
 import { Map, TileLayer, Marker } from "react-leaflet";
 
 import { fishingTripMarker } from "../../../components/Maps/Markers/FishingTrip/FishingTripMarker";
-import { connect } from "react-redux";
 import axios from "../../../axios";
 import FishingTripToolbar from "../../../components/FishingTrips/FishingTripToolbar/FishingTripToolbar";
 import Button from "../../../components/UI/Buttons/Button/Button";
 import Aux from "../../../hoc/Auxiliary/Auxiliary";
 import Input from "../../../components/UI/Inputs/Input/Input";
 import Loading from "../../../components/FishingTrips/Loading/Loading";
+
+import { connect } from "react-redux";
 
 import classes from "./ActionFishingTrip.module.css";
 
@@ -544,10 +545,6 @@ class ActionFishingTrip extends Component {
     );
   }
 }
-
-ActionFishingTrip.propTypes = {
-  // editable: PropTypes.bool
-};
 
 const mapStateToProps = state => {
   return {

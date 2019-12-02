@@ -36,7 +36,7 @@ tile.propTypes = {
   topLeft: PropTypes.element,
   topRight: PropTypes.element,
   botLeft: PropTypes.element,
-  botbotRightLeft: PropTypes.element
+  botRight: PropTypes.element
 };
 
 export default tile;

@@ -6,7 +6,6 @@ import TimeLineItem from "./TimeLineItem/TimeLineItem";
 import classes from "./TimeLine.module.css";
 
 const TimeLine = props => {
-    console.log(props.fishes)
   return (
     <ul className={classes.TimeLine}>
       {props.fishes.map(fish => (

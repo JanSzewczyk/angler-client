@@ -3,7 +3,7 @@
   display: flex;
   flex-flow: row;
   align-items: center;
-  min-height: 42px;
+  min-height: 64px;
   color: #f4f4f4;
   width: 100%;
   padding: 8px 0;
@@ -24,6 +24,7 @@
 .Item .Type {
   display: inline-block;
   padding-bottom: 4px;
+  padding-top: 4px;
 }
 
 .Item .Value {
