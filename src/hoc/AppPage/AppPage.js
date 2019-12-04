@@ -41,9 +41,8 @@ class AppPage extends Component {
         <Header
           showUserPanel={this.showUserPanelHandler}
           userName={
-            this.props.userInformation.firstName +
-            " " +
-            this.props.userInformation.lastName
+            this.props.userInformation.nick
+            
           }
         />
         <main className={classes.Main}>

@@ -33,7 +33,7 @@ class ActionFish extends Component {
         elementConfig: {
           type: "number"
         },
-        label: "Fish length",
+        label: "Fish length (cm)",
         value: 0,
         validation: {
           required: true,
@@ -47,7 +47,7 @@ class ActionFish extends Component {
         elementConfig: {
           type: "number"
         },
-        label: "Fish weight",
+        label: "Fish weight (kg)",
         value: 0,
         validation: {
           required: true,

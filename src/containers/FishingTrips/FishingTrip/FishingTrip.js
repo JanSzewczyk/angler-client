@@ -113,7 +113,7 @@ class FishingTrip extends Component {
     this.setState({
       delLoading: true
     });
-    
+
     axios
       .delete("/trophy/" + id, config)
       .then(res => {
@@ -263,7 +263,9 @@ class FishingTrip extends Component {
                   </>
                 }
               >
-                <TimeLine fishes={trophyData} />
+                <TimeLine
+                  fishes={trophyData.sort((a, b) => (a.time > b.time ? 1 : -1))}
+                />
               </Tile>
             </Aux>
           )}

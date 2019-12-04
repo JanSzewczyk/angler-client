@@ -19,6 +19,7 @@ class Signin extends Component {
       email: {
         elementType: "input",
         elementConfig: {
+          name: "email",
           type: "email"
         },
         label: "E-Mail",
@@ -33,6 +34,7 @@ class Signin extends Component {
       password: {
         elementType: "input",
         elementConfig: {
+          name: "password",
           type: "password"
         },
         label: "Password",

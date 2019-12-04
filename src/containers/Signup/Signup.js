@@ -15,6 +15,20 @@ import classes from "./Signup.module.css";
 class Signup extends Component {
   state = {
     signupForm: {
+      nick: {
+        elementType: "input",
+        elementConfig: {
+          type: "text"
+        },
+        label: "Nick",
+        value: "",
+        validation: {
+          required: true,
+          minLength: 3
+        },
+        valid: false,
+        touched: false
+      },
       firstName: {
         elementType: "input",
         elementConfig: {
