@@ -1,4 +1,4 @@
-.FishingTrips {
+.Fisheries {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -6,7 +6,6 @@
   -webkit-box-direction: normal;
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
-  
-  max-height: calc(100% - 64px);
+  max-height: 100%;
   overflow-y: scroll;
 }

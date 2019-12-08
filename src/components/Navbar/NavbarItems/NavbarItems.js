@@ -1,5 +1,5 @@
 import React from "react";
-import { FaHome, FaFish } from "react-icons/fa";
+import { FaHome, FaFish, FaWater } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 
 import NavbarItem from "./NavbarItem/NavbarItem";
@@ -16,7 +16,11 @@ const navbarItems = props => (
       <FaFish size={20} />
         Fishing Trips
     </NavbarItem>
-    <NavbarItem link="/logout" exact> 
+    <NavbarItem link="/fisheries" >
+      <FaWater size={20} />
+      Fisheries in Poland
+    </NavbarItem>
+    <NavbarItem link="/eloo" exact> 
       <FiLogOut size={20} />
         Logout
     </NavbarItem>

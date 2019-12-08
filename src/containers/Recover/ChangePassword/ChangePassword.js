@@ -110,7 +110,7 @@ class ChangePassword extends Component {
       .catch(err => {
         console.log(err.response.data);
         this.setState({
-          redirect: true,
+          redirect: false,
           loading: false,
           error: true,
           errorMessage: err.response.data.message

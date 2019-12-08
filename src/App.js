@@ -17,6 +17,7 @@ import Home from "./containers/Home/Home";
 import FishingTrips from "./containers/FishingTrips/FishingTrips";
 import FishingTrip from "./containers/FishingTrips/FishingTrip/FishingTrip";
 import ActionFishingTrip from "./containers/FishingTrips/ActionFishingTrip/ActionFishingTrip";
+import Fisheries from "./containers/Fisheries/Fisheries";
 import Aux from "./hoc/Auxiliary/Auxiliary";
 
 class App extends Component {
@@ -30,13 +31,11 @@ class App extends Component {
         {this.props.isAuthenticated ? (
           <AppPage>
             <Switch>
-              {/* <Route path={"/trips/edit/:id"}>
-                <AddFishingTrip editable />
-              </Route> */}
               <Route path={"/trips/addTrip"} component={ActionFishingTrip} />
               <Route path={"/trips/edit/:id"} component={ActionFishingTrip} />
               <Route path={"/trips/:id"} exact component={FishingTrip} />
 
+              <Route path={"/fisheries"} exact component={Fisheries} />
               <Route path="/trips" component={FishingTrips} />
               <Route path="/logout" component={Logout} />
               <Route path="/" component={Home} />
