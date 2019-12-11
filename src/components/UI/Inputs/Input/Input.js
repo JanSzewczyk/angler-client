@@ -19,6 +19,7 @@ const input = props => {
           {...props.elementConfig}
           value={props.value}
           onChange={props.changed}
+          disabled={props.disabled}
         />
       );
       break;
@@ -29,6 +30,7 @@ const input = props => {
           {...props.elementConfig}
           value={props.value}
           onChange={props.changed}
+          disabled={props.disabled}
           style={{
             maxWidth: "100%",
             minHeight: "150px"

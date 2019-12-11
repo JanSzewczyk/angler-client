@@ -1,8 +1,8 @@
 import React, { createRef, Component } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import { MdLibraryAdd, MdEdit, MdRemoveCircle } from "react-icons/md";
-import { FaMapMarkedAlt, FaRegEdit, FaSave, FaMap } from "react-icons/fa";
-import { Map, TileLayer, Marker } from "react-leaflet";
+import { FaMapMarkedAlt, FaRegEdit, FaSave, FaPlus } from "react-icons/fa";
+import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 
 import { fishingTripMarker } from "../../../components/Maps/Markers/FishingTrip/FishingTripMarker";
 import axios from "../../../axios";
@@ -11,6 +11,7 @@ import Button from "../../../components/UI/Buttons/Button/Button";
 import Aux from "../../../hoc/Auxiliary/Auxiliary";
 import Input from "../../../components/UI/Inputs/Input/Input";
 import Loading from "../../../components/FishingTrips/Loading/Loading";
+import Tile from "../../../components/UI/Tile/Tile";
 
 import { connect } from "react-redux";
 
@@ -96,14 +97,17 @@ class ActionFishingTrip extends Component {
       latitude: 50.86346212847674,
       altitude: 23.09660911560059
     },
+    fisheryId: null,
+    addNewFisheryMode: false,
     formIsValid: false,
     loading: false,
     editMode: false,
     tripId: null,
-    fisheryId: null
+    fisheries: []
   };
 
   componentDidMount() {
+    this.getFisheriesData();
     if (this.props.match.params.id) {
       this.setState({
         loading: true,
@@ -113,6 +117,32 @@ class ActionFishingTrip extends Component {
       this.getTripData(this.props.match.params.id);
     }
   }
+
+  getFisheriesData = () => {
+    let config = {
+      headers: {
+        Authorization: this.props.tokenType + " " + this.props.token
+      }
+    };
+
+    this.setState({
+      loading: true
+    });
+
+    axios
+      .get("/fishery", config)
+      .then(res => {
+        this.setState({
+          loading: false,
+          fisheries: res.data
+        });
+      })
+      .catch(err => {
+        this.setState({
+          redirect: true
+        });
+      });
+  };
 
   getTripData = id => {
     let config = {
@@ -191,6 +221,7 @@ class ActionFishingTrip extends Component {
       }
     };
 
+    console.log(data);
     let config = {
       headers: {
         Authorization: this.props.tokenType + " " + this.props.token
@@ -204,7 +235,6 @@ class ActionFishingTrip extends Component {
     axios
       .put("/trip", data, config)
       .then(res => {
-        console.log("update");
         this.setState({
           loading: false
         });
@@ -248,15 +278,23 @@ class ActionFishingTrip extends Component {
       if (key !== "fisheryName" && key !== "fisheryDescription")
         data[key] = this.state.fishingTripForm[key].value;
     }
-
-    data = {
-      ...data,
-      fishery: {
+    let fisheryData = {};
+    if (!this.state.addNewFisheryMode) {
+      fisheryData = {
+        id: this.state.fisheryId
+      };
+    } else {
+      fisheryData = {
         name: this.state.fishingTripForm["fisheryName"].value,
         description: this.state.fishingTripForm["fisheryDescription"].value,
         latitude: this.state.fishery.latitude,
         altitude: this.state.fishery.altitude
-      }
+      };
+    }
+
+    data = {
+      ...data,
+      fishery: fisheryData
     };
 
     let config = {
@@ -301,6 +339,20 @@ class ActionFishingTrip extends Component {
     return isValid;
   }
 
+  checkFormValidity = () => {
+    let formIsValid = true;
+    for (let inputIdentifier in this.state.fishingTripForm) {
+      formIsValid =
+        this.state.fishingTripForm[inputIdentifier].valid && formIsValid;
+    }
+
+    if (!this.state.addNewFisheryMode) {
+      formIsValid = this.state.fisheryId !== null && formIsValid;
+    }
+
+    return formIsValid;
+  };
+
   inputChangedHandler = (event, inputIdentifier) => {
     const updatedFishingTripForm = {
       ...this.state.fishingTripForm
@@ -321,16 +373,16 @@ class ActionFishingTrip extends Component {
 
     updatedFishingTripForm[inputIdentifier] = updatedFormElement;
 
-    let formIsValid = true;
-    for (let inputIdentifier in updatedFishingTripForm) {
-      formIsValid =
-        updatedFishingTripForm[inputIdentifier].valid && formIsValid;
-    }
-
-    this.setState({
-      fishingTripForm: updatedFishingTripForm,
-      formIsValid: formIsValid
-    });
+    this.setState(
+      {
+        fishingTripForm: updatedFishingTripForm
+      },
+      () => {
+        this.setState({
+          formIsValid: this.checkFormValidity()
+        });
+      }
+    );
   };
 
   refFishery = createRef();
@@ -344,6 +396,63 @@ class ActionFishingTrip extends Component {
         }
       });
     }
+  };
+
+  chooseFisheryHandler = fishery => {
+    const fillData = {
+      ...this.state.fishingTripForm,
+      fisheryName: {
+        ...this.state.fishingTripForm["fisheryName"],
+        value: fishery.name,
+        valid: true
+      },
+      fisheryDescription: {
+        ...this.state.fishingTripForm["fisheryDescription"],
+        value: fishery.description,
+        valid: true
+      }
+    };
+
+    this.setState(
+      {
+        fishingTripForm: fillData,
+        fisheryId: fishery.id
+      },
+      () => {
+        this.setState({
+          formIsValid: this.checkFormValidity()
+        });
+      }
+    );
+  };
+
+  changeAddNewFisheryModeHandler = () => {
+    const fillData = {
+      ...this.state.fishingTripForm,
+      fisheryName: {
+        ...this.state.fishingTripForm["fisheryName"],
+        value: "",
+        valid: false
+      },
+      fisheryDescription: {
+        ...this.state.fishingTripForm["fisheryDescription"],
+        value: "",
+        valid: false
+      }
+    };
+
+    this.setState(
+      {
+        fishingTripForm: fillData,
+        addNewFisheryMode: !this.state.addNewFisheryMode,
+        fisheryId: null
+      },
+      () => {
+        this.setState({
+          formIsValid: this.checkFormValidity()
+        });
+      }
+    );
   };
 
   backToFishingList = () => {
@@ -411,120 +520,126 @@ class ActionFishingTrip extends Component {
               shouldValidate={formElement.config.validation}
               touched={formElement.config.touched}
               changed={event => this.inputChangedHandler(event, formElement.id)}
+              disabled={!this.state.addNewFisheryMode}
             />
           ))}
       </Aux>
     );
 
-    let window = (
-      <div className={classes.AddFishingTrip}>
-        <div className={classes.AddForm}>
-          <div className={classes.TopForm}>
-            <div className={classes.Left}>
-              <div className={classes.Title}>
-                {this.state.editMode ? (
-                  <>
-                    <FaRegEdit size={30} />
-                    Edit your trip
-                  </>
-                ) : (
-                  <>
-                    <MdLibraryAdd size={30} />
-                    Add new trip
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
-          <div className={classes.InputForm}>
-            <div className={classes.Body}>
-              <div className={classes.Content}>
-                <div className={classes.Title}>
-                  <MdEdit size={30} />
-                  Fishing Trip
-                </div>
-                {fishingTripForm}
-              </div>
-            </div>
-          </div>
-          <div className={classes.MapForm}>
-            <div className={classes.Body}>
-              <div className={classes.Content}>
-                <div className={classes.Title}>
-                  <FaMapMarkedAlt size={30} />
-                  Fishing spot
-                </div>
-                <label className={classes.MapLabel}>
-                  Mark the fishing spot
-                </label>
-                <Map
-                  center={[52.09, 19.02]}
-                  zoom={6}
-                  style={{
-                    width: "100%",
-                    height: "400px"
-                  }}
-                  maxZoom={19.8}
-                >
-                  <TileLayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
-                  <Marker
-                    icon={fishingTripMarker}
-                    draggable={true}
-                    onDragend={this.updatePosition}
-                    position={markerPosition}
-                    ref={this.refFishery}
-                  ></Marker>
-                </Map>
-              </div>
-            </div>
-          </div>
-          <div className={classes.InputForm}>
-            <div className={classes.Body}>
-              <div className={classes.Content}>
-                <div className={classes.Title}>
-                  <FaMap size={30} />
-                  Fishing spot details
-                </div>
-                {fisheryForm}
-              </div>
-            </div>
-          </div>
-          <div className={classes.BottomForm}>
-            <div className={classes.Right}>
-              <Button clicked={this.backToFishingList}>cancel</Button>
-              {this.state.editMode ? (
+    let window = <Loading />;
+
+    if (!this.state.loading) {
+      window = (
+        <div className={classes.AddFishingTrip}>
+          <Tile
+            sm={"SM-12"}
+            md={"MD-4"}
+            xl={"XL-3"}
+            topLeft={
+              this.state.editMode ? (
                 <>
-                  <Button btnType={"Warming"} clicked={this.removeTripHandler}>
-                    <MdRemoveCircle size={15} />
-                    remove
-                  </Button>
-                  <Button
-                    btnType={"Primary"}
-                    clicked={this.updateTripHandler}
-                    disabled={!this.state.formIsValid}
-                  >
-                    <FaSave size={15} />
-                    update trip
-                  </Button>
+                  <FaRegEdit size={15} />
+                  Edit your trip
                 </>
               ) : (
+                <>
+                  <MdLibraryAdd size={15} />
+                  Create new trip
+                </>
+              )
+            }
+          >
+            {fishingTripForm}
+          </Tile>
+          <Tile
+            sm={"SM-12"}
+            md={"MD-4"}
+            xl={"XL-6"}
+            topLeft={
+              <>
+                <FaMapMarkedAlt size={15} />
+                {this.state.editMode ? (
+                  <>Your fishing spot</>
+                ) : this.state.addNewFisheryMode ? (
+                  <>Mark new fishery</>
+                ) : (
+                  <>Choose fishery</>
+                )}
+                {}
+              </>
+            }
+            botRight={
+              !this.state.editMode ? (
                 <Button
                   btnType={"Primary"}
-                  clicked={this.addNewTripHandler}
-                  disabled={!this.state.formIsValid}
+                  clicked={this.changeAddNewFisheryModeHandler}
                 >
-                  <FaSave size={15} />
-                  save
+                  <FaPlus size={15} />
+                  {!this.state.addNewFisheryMode ? (
+                    <>add new fishery</>
+                  ) : (
+                    <>select an existing fishery</>
+                  )}
                 </Button>
+              ) : null
+            }
+          >
+            <Map
+              center={markerPosition}
+              zoom={6}
+              style={{
+                width: "100%",
+                height: "400px"
+              }}
+              maxZoom={19.8}
+            >
+              <TileLayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
+              {this.state.addNewFisheryMode || this.state.editMode ? (
+                <Marker
+                  icon={fishingTripMarker}
+                  draggable={!this.state.editMode}
+                  onDragend={this.updatePosition}
+                  position={markerPosition}
+                  ref={this.refFishery}
+                ></Marker>
+              ) : (
+                <Aux>
+                  {this.state.fisheries.map(fishery => (
+                    <Marker
+                      className={classes.Marker}
+                      key={fishery.id}
+                      icon={fishingTripMarker}
+                      position={[fishery.latitude, fishery.altitude]}
+                      onClick={() => this.chooseFisheryHandler(fishery)}
+                    >
+                      <Popup minWidth={90} clicked>
+                        {fishery.name}
+                      </Popup>
+                    </Marker>
+                  ))}
+                </Aux>
               )}
-            </div>
-          </div>
+            </Map>
+          </Tile>
+          <Tile
+            sm={"SM-12"}
+            md={"MD-4"}
+            xl={"XL-3"}
+            topLeft={
+              <>
+                <MdEdit size={15} />
+                {!this.state.addNewFisheryMode ? (
+                  <>Fishery details</>
+                ) : (
+                  <>Describe the fishery</>
+                )}
+              </>
+            }
+          >
+            {fisheryForm}
+          </Tile>
         </div>
-      </div>
-    );
-
-    if (this.state.loading) {
-      window = <Loading />;
+      );
     }
 
     return (
@@ -538,6 +653,33 @@ class ActionFishingTrip extends Component {
               <IoIosArrowBack size={14} />
               back
             </Button>
+          }
+          right={
+            this.state.editMode ? (
+              <>
+                <Button btnType={"Warming"} clicked={this.removeTripHandler}>
+                  <MdRemoveCircle size={15} />
+                  remove trip
+                </Button>
+                <Button
+                  btnType={"Primary"}
+                  clicked={this.updateTripHandler}
+                  disabled={!this.state.formIsValid}
+                >
+                  <FaSave size={15} />
+                  update trip
+                </Button>
+              </>
+            ) : (
+              <Button
+                btnType={"Primary"}
+                clicked={this.addNewTripHandler}
+                disabled={!this.state.formIsValid}
+              >
+                <FaSave size={15} />
+                save new trip
+              </Button>
+            )
           }
         />
         {window}

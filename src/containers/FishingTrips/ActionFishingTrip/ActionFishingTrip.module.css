@@ -1,10 +1,4 @@
 .AddFishingTrip {
-  height: calc(100% - 64px);
-  overflow-y: scroll;
-}
-
-.AddForm {
-  background: #27ab5b;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -12,82 +6,14 @@
   -webkit-box-direction: normal;
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  min-height: 400px;
+  max-height: calc(100% - 64px);
+  overflow-y: scroll;
 }
 
-.Title {
-  color: #f4f4f4;
-  text-decoration: none;
-  padding-right: 16px;
-  font-weight: 600;
-  font-size: 18px;
+.Marker {
+  color: red;
 }
 
-.InputForm {
-  flex-basis: 100%;
-  background-clip: padding-box;
-  max-width: 100%;
-  /* max-height: 392px; */
-}
-
-.MapForm {
-  flex-basis: 100%;
-  background-clip: padding-box;
-  max-width: 100%;
-  /* max-height: 392px; */
-}
-/* BODY */
-.Body {
-  flex: 1;
-  margin: 16px 16px 32px 16px;
-}
-
-.Content {
-  min-height: 200px;
-}
-
-.TopForm,
-.BottomForm {
-  flex-basis: 100%;
-  background-clip: padding-box;
-  padding: 16px;
-}
-.TopForm .Left,
-.BottomForm .Left {
-  flex: 1;
-  text-align: left;
-  color: #f4f4f4;
-}
-.TopForm .Right,
-.BottomForm .Right {
-  flex: 1;
-  text-align: right;
-  color: #f4f4f4;
-}
-
-
-.MapLabel {
-  padding-left: 16px;
-  color: #f4f4f4;
-  /* font-weight: bold; */
-  display: block;
-  margin-top: 16px;
-}
-
-@media only screen and (min-width: 80em) {
-  .InputForm {
-    max-width: 25%;
-  }
-  .MapForm {
-    max-width: 50%;
-  }
-}
-
-.Loading {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.Marker:hover {
+  color: blue;
 }

@@ -4,9 +4,9 @@ import { MdLibraryAdd } from "react-icons/md";
 import Aux from "../../hoc/Auxiliary/Auxiliary";
 import FishingTripCard from "../../components/FishingTrips/FishingTripCard/FishingTripCard";
 import Button from "../../components/UI/Buttons/Button/Button";
-import Spinner from "../../components/UI/Spinner/Spinner";
 import FishingTripToolbar from "../../components/FishingTrips/FishingTripToolbar/FishingTripToolbar";
 import axios from "../../axios";
+import Loading from "../../components/FishingTrips/Loading/Loading";
 
 import { connect } from "react-redux";
 
@@ -57,7 +57,6 @@ class FishingTrips extends Component {
   };
 
   editTripHandler = id => {
-    console.log(id);
     this.props.history.push("/trips/edit/" + id);
   };
 
@@ -66,11 +65,7 @@ class FishingTrips extends Component {
   };
 
   render() {
-    let content = (
-      <div className={classes.Loading}>
-        <Spinner />
-      </div>
-    );
+    let content = <Loading />;
 
     if (!this.state.loading) {
       content = (
