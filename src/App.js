@@ -34,7 +34,7 @@ class App extends Component {
               <Route path={"/trips/addTrip"} component={ActionFishingTrip} />
               <Route path={"/trips/edit/:id"} component={ActionFishingTrip} />
               <Route path={"/trips/:id"} exact component={FishingTrip} />
-
+              ...
               <Route path={"/fisheries"} exact component={Fisheries} />
               <Route path="/trips" component={FishingTrips} />
               <Route path="/logout" component={Logout} />
