@@ -585,7 +585,7 @@ class ActionFishingTrip extends Component {
             }
           >
             <Map
-              center={markerPosition}
+              center={[50, 23]}
               zoom={6}
               style={{
                 width: "100%",
@@ -612,7 +612,7 @@ class ActionFishingTrip extends Component {
                       position={[fishery.latitude, fishery.altitude]}
                       onClick={() => this.chooseFisheryHandler(fishery)}
                     >
-                      <Popup minWidth={90} clicked>
+                      <Popup minWidth={90} >
                         {fishery.name}
                       </Popup>
                     </Marker>

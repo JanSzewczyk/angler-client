@@ -1,0 +1,41 @@
+.FishListItem {
+  list-style: none;
+  align-items: center;
+  text-align: center;
+  color: #f4f4f4;
+  width: 100%;
+  padding: 8px 0;
+}
+.FishListItem:hover {
+    cursor: pointer;
+  background: #239b53;
+}
+
+.Fish {
+    padding-top: 4px;
+font-size: 16px;
+}
+
+.Item {
+    padding: 8px;
+    opacity: 0.8;
+    font-size: 14px;
+    text-align: right;
+  }
+
+.ActionEdit svg,
+.ActionRemove svg {
+  margin: 0;
+  padding: 0;
+}
+
+.Line {
+  margin: 0 16px;
+  border-bottom: 1px solid #f4f4f4;
+  box-shadow: 0 1px 2px rgba(255, 255, 255, 0.1);
+  opacity: 0.8;
+  width: calc(100% - 32px);
+}
+.Line:last-of-type {
+  display: none;
+}

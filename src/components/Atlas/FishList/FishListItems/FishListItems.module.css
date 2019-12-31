@@ -1,0 +1,10 @@
+.FishListItems {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    height: calc(100vh - 180px);
+    overflow-y: scroll;
+}

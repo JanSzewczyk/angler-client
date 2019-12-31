@@ -1,5 +1,4 @@
 .Tile {
-  /* -ms-flex-preferred-size: 100%; */
   flex-basis: 100%;
   background-clip: padding-box;
   max-width: 100%;
@@ -7,7 +6,6 @@
   margin-right: 8px;
   margin-bottom: 8px;
   border-radius: 8px;
-  min-height: 200px;
   color: #f4f4f4;
 }
 
@@ -79,6 +77,11 @@
   }
 }
 
+.Full {
+  max-width: 100%;
+  height: calc(100% - 8px);
+}
+
 /* TOP */
 .Top {
   flex: 0 0 auto;
@@ -94,7 +97,6 @@
   text-align: left;
   font-size: 16px;
   display: flex;
-  /* flex-direction: column; */
 }
 .Right {
   flex: 0 0 auto;

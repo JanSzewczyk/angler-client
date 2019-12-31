@@ -18,6 +18,7 @@ import FishingTrips from "./containers/FishingTrips/FishingTrips";
 import FishingTrip from "./containers/FishingTrips/FishingTrip/FishingTrip";
 import ActionFishingTrip from "./containers/FishingTrips/ActionFishingTrip/ActionFishingTrip";
 import Fisheries from "./containers/Fisheries/Fisheries";
+import Atlas from "./containers/Atlas/Atlas";
 import Aux from "./hoc/Auxiliary/Auxiliary";
 
 class App extends Component {
@@ -37,6 +38,7 @@ class App extends Component {
               ...
               <Route path={"/fisheries"} exact component={Fisheries} />
               <Route path="/trips" component={FishingTrips} />
+              <Route path="/atlas" component={Atlas} />
               <Route path="/logout" component={Logout} />
               <Route path="/" component={Home} />
             </Switch>
