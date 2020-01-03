@@ -1,0 +1,15 @@
+.UserProfileContainer {
+  display: flex;
+  flex-flow: column;
+  overflow-y: scroll;
+  align-items: flex-start;
+}
+
+@media only screen and (min-width: 70em) {
+  .UserProfileContainer {
+    /* display: flex; */
+    flex-flow: row;
+    height: 100%;
+    overflow-y: hidden;
+  }
+}

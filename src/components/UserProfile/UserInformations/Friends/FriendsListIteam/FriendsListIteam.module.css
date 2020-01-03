@@ -1,0 +1,46 @@
+.FriendsListIteam {
+  list-style: none;
+  color: #f4f4f4;
+  width: 100%;
+  padding: 16px 0;
+  box-align: center;
+  align-items: center;
+}
+
+.Line {
+  margin: 0 16px;
+  border-bottom: 1px solid #f4f4f4;
+  box-shadow: 0 1px 2px rgba(255, 255, 255, 0.1);
+  opacity: 0.8;
+  width: calc(100% - 32px);
+}
+.Line:last-of-type {
+  display: none;
+}
+
+.User {
+  float: left;
+  height: 100%;
+}
+.User:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.Actions {
+  float: right;
+  padding-right: 32px;
+}
+
+.ActionRemove,
+.ActionEdit {
+  display: inline;
+  cursor: pointer;
+}
+.ActionEdit:hover {
+  color: #2f8ecb;
+}
+.ActionRemove:hover {
+  color: #cb2f40;
+}
+

@@ -1,0 +1,38 @@
+.UserInformations {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  max-height: 100%;
+  width: 100%;
+}
+
+@media only screen and (min-width: 70em) {
+  .UserInformations {
+    width: 50%;
+    overflow-y: scroll;
+  }
+}
+
+.Info {
+  color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+}
+
+.Title {
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.6;
+  display: inline-block;
+}
+
+.Data {
+  text-align: center;
+  font-size: 14px;
+  display: inline-block;
+  padding: 0 16px 16px 16px;
+}
