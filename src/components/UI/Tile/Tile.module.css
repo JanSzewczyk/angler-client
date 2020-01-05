@@ -91,13 +91,18 @@
   padding: 8px 8px 16px 8px;
 }
 
-.Left {
+.Top .Left {
   flex: 1;
   text-align: left;
   font-size: 16px;
   display: flex;
 }
-.Right {
+
+.Top .Left svg{
+ margin: 0 4px;
+}
+
+.Top .Right {
   flex: 0 0 auto;
   font-size: 16px;
   text-align: right;

@@ -7,7 +7,7 @@
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
 
-  height: calc(100% - 64px);
+  max-height: calc(100% - 64px);
   overflow-y: scroll;
 }
 

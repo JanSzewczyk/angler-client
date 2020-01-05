@@ -42,6 +42,7 @@ export class Friends extends Component {
     axios
       .get("/friend/" + this.props.nick, config)
       .then(res => {
+        console.log("elllaosdasdasd")
         this.setState({
           loading: false,
           friendsList: res.data
@@ -194,14 +195,13 @@ export class Friends extends Component {
 
   render() {
     let view = null;
-    if (this.state.loadind || this.state.actionLoading) {
+    if (this.state.loadind ) {
       view = <Loading />;
     }
 
     if (
       !this.state.addFriends &&
-      !this.state.loading &&
-      !this.state.actionLoading
+      !this.state.loading 
     ) {
       view = (
         <Aux>
@@ -245,7 +245,7 @@ export class Friends extends Component {
                 onClick={() =>
                   this.props.redirectTo("/profile/" + friend.userNick)
                 }
-                inviteOnClick={() => this.inviteUserHandler(friend.userNick)} 
+                inviteOnClick={() => this.inviteUserHandler(friend.userNick)}
               />
             ))
           ) : (
@@ -255,11 +255,22 @@ export class Friends extends Component {
       );
     }
 
+    let config =
+      this.props.userStatus === 0
+        ? {
+            sm: "SM-4",
+            md: "MD-4",
+            xl: "XL-4"
+          }
+        : {
+            sm: "SM-6",
+            md: "MD-6",
+            xl: "XL-6"
+          };
+
     return (
       <Tile
-        sm={"SM-6"}
-        md={"MD-6"}
-        xl={"XL-6"}
+        {...config}
         topLeft={
           this.state.addFriends ? (
             <Aux>

@@ -25,7 +25,7 @@ const Fisheries = props => {
         zoom={6}
         style={{
           width: "100%",
-          height: "400px"
+          height: "300px"
         }}
         maxZoom={19.8}
       >

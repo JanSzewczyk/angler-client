@@ -1,4 +1,4 @@
-.FriendsListIteam {
+.UserNotificationsListItem {
   list-style: none;
   display: flex;
   flex-flow: row;
@@ -9,43 +9,37 @@
   font-size: 14px;
 }
 
-.User {
-  height: 100%;
-  flex-grow: 1;
-  padding-right: 4px;
-}
-.User:hover {
-  opacity: 0.6;
-  cursor: pointer;
+.UserNotificationsListItemUnread {
+  background: #239b53;
 }
 
-.Actions {
+.Icon {
+}
+
+.Date {
+  padding: 0 4px;
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding: 0 4px;
 }
 
-.Item {
-  white-space: nowrap;
-}
-
-.ItemDescription {
+.Date .Value {
   opacity: 0.6;
   font-size: 10px;
   white-space: nowrap;
 }
 
-.ActionRemove,
-.ActionEdit {
-  display: inline;
+.Message {
+  font-size: 12px;
+  padding: 0 4px;
+  flex-grow: 1;
+}
+
+.Action {
+}
+.Action:hover{
   cursor: pointer;
-}
-.ActionEdit:hover {
-  color: #2f8ecb;
-}
-.ActionRemove:hover {
-  color: #cb2f40;
+  opacity: 0.6;
 }
 
 .Line {
@@ -53,7 +47,7 @@
   border-bottom: 1px solid #f4f4f4;
   box-shadow: 0 1px 2px rgba(255, 255, 255, 0.1);
   opacity: 0.8;
-  width: calc(100% - 32px);
+  width: 100%;
 }
 .Line:last-of-type {
   display: none;

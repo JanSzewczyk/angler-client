@@ -20,7 +20,7 @@ const FriendsListIteam = props => {
       if (props.userStatus === 0) {
         action = (
           <div className={classes.ActionRemove} onClick={props.removeOnClick}>
-            <FaUserMinus size={20} />
+            <FaUserMinus size={17} />
           </div>
         );
       }
@@ -29,12 +29,14 @@ const FriendsListIteam = props => {
       if (props.userStatus === 0) {
         action = (
           <Aux>
-            wait for approval <FaUserClock size={20} />
-            <div
-              className={classes.ActionRemove}
-              onClick={props.declineOnClick}
-            >
-              <FaUserTimes size={20} />
+            <div className={classes.ItemDescription}>wait for approval</div>
+            <div className={classes.Item}>
+              <div
+                className={classes.ActionRemove}
+                onClick={props.declineOnClick}
+              >
+                <FaUserTimes size={17} />
+              </div>
             </div>
           </Aux>
         );
@@ -44,16 +46,21 @@ const FriendsListIteam = props => {
       if (props.userStatus === 0) {
         action = (
           <Aux>
-            add to friends
-            <div className={classes.ActionEdit} onClick={props.acceptOnCilick}>
-              <FaUserCheck size={20} />
+            <div className={classes.Item}>
+              <div
+                className={classes.ActionEdit}
+                onClick={props.acceptOnCilick}
+              >
+                <FaUserCheck size={17} />
+              </div>
+              <div
+                className={classes.ActionRemove}
+                onClick={props.declineOnClick}
+              >
+                <FaUserTimes size={17} />
+              </div>
             </div>
-            <div
-              className={classes.ActionRemove}
-              onClick={props.declineOnClick}
-            >
-              <FaUserTimes size={20} />
-            </div>
+            <div className={classes.ItemDescription}>add to friends</div>
           </Aux>
         );
       }
@@ -61,7 +68,7 @@ const FriendsListIteam = props => {
     case 4:
       action = (
         <div className={classes.ActionEdit} onClick={props.inviteOnClick}>
-          <FaUserPlus size={20} />
+          <FaUserPlus size={17} />
         </div>
       );
       break;
@@ -72,7 +79,11 @@ const FriendsListIteam = props => {
     <Aux>
       <li className={classes.FriendsListIteam}>
         <div className={classes.User} onClick={props.onClick}>
-          <FaUser size={16} />
+          {props.status === 2 && props.userStatus === 0 ? (
+            <FaUserClock size={17} />
+          ) : (
+            <FaUser size={14} />
+          )}
           {props.nick}
         </div>
         <div className={classes.Actions}>{action}</div>
