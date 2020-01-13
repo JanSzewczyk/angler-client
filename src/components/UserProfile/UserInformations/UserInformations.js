@@ -47,15 +47,15 @@ const UserInformations = props => {
         </div>
       </Tile>
 
-      {props.status === 0 ? <UserNotifications /> : null}
+      {props.userStatus === 0 ? <UserNotifications /> : null}
 
       <Friends
         nick={props.userDetails.nick}
-        userStatus={props.status}
+        userStatus={props.userStatus}
         redirectTo={props.redirectTo}
       />
 
-      {props.status === 0 || props.status === 1 ? (
+      {props.userStatus === 0 || props.userStatus === 1 ? (
         <Fisheries fisheries={props.fisheries} />
       ) : null}
     </div>
@@ -64,7 +64,7 @@ const UserInformations = props => {
 
 UserInformations.propTypes = {
   redirectTo: PropTypes.func.isRequired,
-  status: PropTypes.number.isRequired,
+  userStatus: PropTypes.number.isRequired,
   userDetails: PropTypes.object.isRequired,
   fisheries: PropTypes.array.isRequired
 };

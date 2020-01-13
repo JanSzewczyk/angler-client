@@ -1,0 +1,9 @@
+.Row:nth-child(even) {
+  background-color: #239b53;
+}
+
+.Item {
+  font-size: 12px;
+  text-align: center;
+  padding: 8px;
+}

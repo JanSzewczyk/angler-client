@@ -38,7 +38,6 @@ export class UserNotifications extends Component {
     axios
       .get("/notification", config)
       .then(res => {
-        console.log(res.data);
         this.setState({
           loading: false,
           notifications: res.data

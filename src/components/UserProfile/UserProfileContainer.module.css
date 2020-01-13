@@ -1,13 +1,13 @@
 .UserProfileContainer {
   display: flex;
   flex-flow: column;
-  overflow-y: scroll;
+  overflow-y: auto;
   align-items: flex-start;
+  max-height: 100%;
 }
 
 @media only screen and (min-width: 70em) {
   .UserProfileContainer {
-    /* display: flex; */
     flex-flow: row;
     height: 100%;
     overflow-y: hidden;

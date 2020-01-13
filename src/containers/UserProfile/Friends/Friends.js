@@ -42,7 +42,6 @@ export class Friends extends Component {
     axios
       .get("/friend/" + this.props.nick, config)
       .then(res => {
-        console.log("elllaosdasdasd")
         this.setState({
           loading: false,
           friendsList: res.data
@@ -290,12 +289,12 @@ export class Friends extends Component {
               <Button clicked={this.changeAddFriendHandler}>
                 {this.state.addFriends ? (
                   <Aux>
-                    <FaUserFriends size={16} />
+                    <FaUserFriends size={15} />
                     friends
                   </Aux>
                 ) : (
                   <Aux>
-                    <FaSearch size={16} />
+                    <FaSearch size={15} />
                     find user
                   </Aux>
                 )}

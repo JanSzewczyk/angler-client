@@ -20,6 +20,8 @@ import ActionFishingTrip from "./containers/FishingTrips/ActionFishingTrip/Actio
 import Fisheries from "./containers/Fisheries/Fisheries";
 import Atlas from "./containers/Atlas/Atlas";
 import UserProfile from "./containers/UserProfile/UserProfile";
+import News from "./components/News/News";
+import PostsTable from "./containers/PostsTable/PostsTable";
 import Aux from "./hoc/Auxiliary/Auxiliary";
 
 class App extends Component {
@@ -39,6 +41,11 @@ class App extends Component {
               <Route path={"/fisheries"} exact component={Fisheries} />
               <Route path={"/profile/:nick"} component={UserProfile} />
               <Route path="/trips" component={FishingTrips} />
+              <Route path="/news">
+                <News>
+                  <PostsTable />
+                </News>
+              </Route>
               <Route path="/atlas" component={Atlas} />
               <Route path="/logout" component={Logout} />
               <Route path="/" component={Home} />
