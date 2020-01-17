@@ -28,69 +28,6 @@
   text-align: left;
 }
 
-.FishingTrip,
-.Fishery {
-  margin-top: 8px;
-  display: flex;
-}
-
-.FishingTrip .TripInfo {
-  margin-right: 8px;
-  width: 50%;
-}
-.FishingTrip .TripInfo .TripName {
-  text-align: center;
-  font-size: 14px;
-}
-.FishingTrip .TripInfo .TripDate {
-  padding-top: 4px;
-  opacity: 0.6;
-  font-size: 10px;
-  white-space: nowrap;
-}
-.FishingTrip .TripInfo .TripDescription {
-  padding: 8px 0 16px 0;
-  text-align: center;
-  font-size: 12px;
-}
-.FishingTrip .TripInfo .Trophies {
-  padding: 8px;
-  text-align: center;
-  font-size: 14px;
-}
-.FishingTrip .TripInfo .TrophyTable {
-  max-height: 200px;
-  overflow-y: auto;
-}
-.FishingTrip .TripMap {
-  width: 50%;
-}
-
-.Fishery .FisheryInfo {
-  padding-right: 8px;
-  width: 40%;
-}
-.Fishery .FisheryInfo .Name {
-  text-align: center;
-  font-size: 14px;
-}
-.Fishery .FisheryInfo .Description {
-  padding-top: 8px;
-  text-align: center;
-  font-size: 12px;
-}
-.Fishery .FisheryMap {
-  width: 60%;
-}
-
-.Line {
-  margin: 0 16px;
-  border-bottom: 1px solid #f4f4f4;
-  box-shadow: 0 1px 2px rgba(255, 255, 255, 0.1);
-  opacity: 0.8;
-  width: calc(100% - 32px);
-}
-
 .Actions {
   display: flex;
 }

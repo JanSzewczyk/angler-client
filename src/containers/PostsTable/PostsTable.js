@@ -4,6 +4,7 @@ import axios from "../../axios";
 
 import Post from "../../components/PostsTable/Post/Post";
 import Loading from "../../components/FishingTrips/Loading/Loading";
+import ActionPost from "./ActionPost/ActionPost";
 import Aux from "../../hoc/Auxiliary/Auxiliary";
 
 import { connect } from "react-redux";
@@ -17,6 +18,17 @@ class PostsTable extends Component {
   };
 
   componentDidMount() {
+    this.downloadPostsData();
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevState.editPost !== null && this.state.editPost === null) {
+      console.log("list update componentDidUpdate");
+    }
+  }
+
+  downloadPostsData = () => {
+    console.log("update posts data");
     if (this.props.userStatus === 0 || !this.props.userStatus) {
       this.setState({
         addNewPostWindow: true
@@ -28,7 +40,7 @@ class PostsTable extends Component {
     } else {
       this.getUserPosts(this.props.nick);
     }
-  }
+  };
 
   getAllPosts = () => {
     let config = {
@@ -66,19 +78,36 @@ class PostsTable extends Component {
         });
       })
       .catch(err => {
-        console.log("error UserProfile component");
+        console.log("error PostsTable getUserPosts");
       });
   };
 
   editPostHandler = id => {
-    console.log("edit " + id);
     this.setState({
       editPost: id
     });
   };
 
   deletePostHandler = id => {
-    console.log("delete post " + id);
+    let config = {
+      headers: {
+        Authorization: this.props.tokenType + " " + this.props.token
+      }
+    };
+
+    axios
+      .delete("/post/" + id, config)
+      .then(res => {
+        this.setState(
+          {
+            loading: false
+          },
+          () => this.downloadPostsData()
+        );
+      })
+      .catch(err => {
+        console.log("error PostsTable deletePostHandler");
+      });
   };
 
   render() {
@@ -106,7 +135,9 @@ class PostsTable extends Component {
 
     return (
       <Aux>
-        {this.state.addNewPostWindow ? <div>add new post window</div> : null}
+        {this.state.addNewPostWindow ? (
+          <ActionPost refreshData={() => this.downloadPostsData()} />
+        ) : null}
         {view}
       </Aux>
     );

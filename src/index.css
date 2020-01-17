@@ -26,6 +26,10 @@ input {
   font: 400 16px "Lato", sans-serif;
 }
 
+textarea {
+  font: 400 16px "Lato", sans-serif;
+}
+
 button {
   font: 400 16px "Lato", sans-serif;
 }
@@ -43,14 +47,14 @@ button {
   border-radius: 5px;
   /* background: #f1f1f1;  */
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
   border-radius: 5px;
-  background: #2f8ecb ; 
+  background: #2f8ecb;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #20618b; 
+  background: #20618b;
 }

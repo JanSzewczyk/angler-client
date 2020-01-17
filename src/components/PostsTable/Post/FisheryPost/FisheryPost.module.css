@@ -1,0 +1,21 @@
+.Fishery {
+  margin-top: 8px;
+  display: flex;
+}
+
+.Fishery .FisheryInfo {
+  padding-right: 8px;
+  width: 40%;
+}
+.Fishery .FisheryInfo .Name {
+  text-align: center;
+  font-size: 14px;
+}
+.Fishery .FisheryInfo .Description {
+  padding-top: 8px;
+  text-align: center;
+  font-size: 12px;
+}
+.Fishery .FisheryMap {
+  width: 60%;
+}

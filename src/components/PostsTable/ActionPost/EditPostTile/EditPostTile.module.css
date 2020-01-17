@@ -1,0 +1,6 @@
+.Close {
+}
+.Close:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
