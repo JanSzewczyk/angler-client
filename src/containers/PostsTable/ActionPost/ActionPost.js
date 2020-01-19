@@ -87,7 +87,6 @@ class ActionPost extends Component {
   };
 
   updatePostHandler = () => {
-    console.log("update post");
     let config = {
       headers: {
         Authorization: this.props.tokenType + " " + this.props.token

@@ -1,0 +1,11 @@
+.Actions {
+  display: flex;
+  align-items: center;
+}
+.Share {
+  margin: 0 4px;
+}
+.Share:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}

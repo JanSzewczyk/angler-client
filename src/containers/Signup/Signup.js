@@ -124,7 +124,6 @@ class Signup extends Component {
 
   signupHandler = event => {
     event.preventDefault();
-    console.log("elo dołaczyleś do nas");
     const data = {};
     for (let key in this.state.signupForm) {
       if (key !== "repeatPassword")

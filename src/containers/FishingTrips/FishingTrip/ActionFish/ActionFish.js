@@ -314,7 +314,7 @@ class ActionFish extends Component {
         }
         topRight={
           <MdClose
-            size={16}
+            size={20}
             className={classes.Close}
             onClick={this.props.onClose}
           />

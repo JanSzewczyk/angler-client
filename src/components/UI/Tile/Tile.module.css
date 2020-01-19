@@ -88,20 +88,17 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 8px 8px 16px 8px;
+  padding: 8px;
 }
-
 .Top .Left {
   flex: 1;
   text-align: left;
   font-size: 16px;
   display: flex;
 }
-
-.Top .Left svg{
- margin: 0 4px;
+.Top .Left svg {
+  margin: 0 4px;
 }
-
 .Top .Right {
   flex: 0 0 auto;
   font-size: 16px;
@@ -129,8 +126,11 @@
 .Bottom .Left {
   flex: 1;
   text-align: left;
+  font-size: 16px;
+  display: flex;
 }
 .Bottom .Right {
-  flex: 1;
+  flex: 0 0 auto;
+  font-size: 16px;
   text-align: right;
 }

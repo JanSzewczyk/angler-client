@@ -33,11 +33,13 @@
 }
 
 .Hour {
-  margin: 2px 0;
+  margin: 4px 0;
   opacity: 0.6;
   display: inline-block;
+  font-size: 10px;
 }
 
 .Info {
-  margin: 8px;
+  margin: 4px 4px 8px 8px;
+  font-size: 12px;
 }

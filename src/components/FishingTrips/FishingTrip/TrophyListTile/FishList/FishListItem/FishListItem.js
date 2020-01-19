@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { MdRemoveCircle, MdEdit } from "react-icons/md";
 
-import Aux from "../../../../../hoc/Auxiliary/Auxiliary";
+import Aux from "../../../../../../hoc/Auxiliary/Auxiliary";
 
 import classes from "./FishListItem.module.css";
 

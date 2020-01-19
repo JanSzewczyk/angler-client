@@ -23,12 +23,11 @@ class PostsTable extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevState.editPost !== null && this.state.editPost === null) {
-      console.log("list update componentDidUpdate");
+      this.downloadPostsData();
     }
   }
 
   downloadPostsData = () => {
-    console.log("update posts data");
     if (this.props.userStatus === 0 || !this.props.userStatus) {
       this.setState({
         addNewPostWindow: true

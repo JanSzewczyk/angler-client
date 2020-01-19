@@ -1,113 +1,35 @@
-.FishingTripCard {
-  /* -ms-flex-preferred-size: 100%; */
-  flex-basis: 100%;
-  background-clip: padding-box;
-
-  max-width: 100%;
-  background: #27ab5b;
-  margin-right: 8px;
-  margin-bottom: 8px;
-
-  border-radius: 8px;
-  /* max-height: 392px; */
-}
-
-.FishingTripCard:last-child {
-  margin-right: 0;
-}
-
-@media only screen and (min-width: 50em) {
-  .FishingTripCard {
-    max-width: calc(50% - 8px);
-  }
-}
-
-@media only screen and (min-width: 80em) {
-  .FishingTripCard {
-    max-width: calc(33.3333333% - 8px);
-  }
-}
-
-@media only screen and (min-width: 120em) {
-  .FishingTripCard {
-    max-width: calc(25% - 8px);
-  }
-}
-
-/* HEADER */
-.Head {
-  /* -webkit-box-flex: 0;
-  -ms-flex: 0 0 auto; */
-  flex: 0 0 auto;
-  margin-top: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  padding: 8px 8px 24px 8px;
-}
-
- .Left {
-  /* -webkit-box-flex: 1;
-  -ms-flex: 1; */
-  flex: 1;
+.FishingTripDescription {
   text-align: left;
   color: #f4f4f4;
   display: flex;
   flex-direction: column;
 }
+.FishingTripDescription:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
 .Title {
-  font-size: 16px;
+  font-size: 14px;
   display: inline-block;
-  /* margin-right: 8px; */
-  padding-bottom: 8px;
+  padding-bottom: 4px;
 }
 
 .Date {
-  font-size: 14px;
+  font-size: 12px;
   opacity: 0.6;
-  padding-left: 16px;
+  padding-left: 8px;
   display: inline-block;
 }
 
-.Right {
-  /* -webkit-box-flex: 0;
-  -ms-flex: 0 0 auto; */
-  flex: 0 0 auto;
-  font-size: 16px;
-  text-align: right;
-}
-
-/* BODY */
-.Body {
-  /* -webkit-box-flex: 1;
-  -ms-flex: 1; */
-  flex: 1;
-  margin: 16px;
-}
-
-.Content {
-  width: 100%;
-  /* min-height: 300px; */
-}
-
-.Bottom {
-  display: -webkit-box;
-  display: -ms-flexbox;
+.Actions {
   display: flex;
-  margin: 16px;
-  /* -webkit-box-flex: 0;
-  -ms-flex: 0 0 auto; */
-  flex: 0 0 auto;
+  align-items: center;
 }
-/* .Bottom .Left {
-  -webkit-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  text-align: left;
-} */
-/* .Bottom .Right {
-  -webkit-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  text-align: right;
-} */
+.Share {
+  margin: 0 4px;
+}
+.Share:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}

@@ -6,10 +6,10 @@
   min-height: 64px;
   color: #f4f4f4;
   width: 100%;
-  padding: 8px 0;
+  padding: 4px 0;
 }
 .FishListItem:hover {
-    background: #239b53;
+  background: #239b53;
 }
 
 .Item {
@@ -17,7 +17,6 @@
   display: flex;
   flex-direction: column;
   width: 26%;
-  font-size: 14px;
   text-align: center;
 }
 
@@ -25,10 +24,12 @@
   display: inline-block;
   padding-bottom: 4px;
   padding-top: 4px;
+  font-size: 10px;
 }
 
 .Item .Value {
   opacity: 0.6;
+  font-size: 12px;
   display: inline-block;
 }
 

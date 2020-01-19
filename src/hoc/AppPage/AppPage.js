@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import Loading from "../../components/Loading/Loading"
+import Loading from "../../components/Loading/Loading";
 import Header from "../../components/Header/Header";
 import UserPanel from "../../components/UserPanel/UserPanel";
 import Toolbar from "../../components/Toolbar/Toolbar";
@@ -37,13 +37,10 @@ class AppPage extends Component {
   render() {
     return (
       <Aux>
-        <Loading loading={this.props.loading} access={false}/>
+        <Loading loading={this.props.loading} access={false} />
         <Header
           showUserPanel={this.showUserPanelHandler}
-          userName={
-            this.props.userInformation.nick
-            
-          }
+          userName={this.props.userInformation.nick}
         />
         <main className={classes.Main}>
           <UserPanel
@@ -52,12 +49,16 @@ class AppPage extends Component {
             userInfo={this.props.userInformation}
           />
           <div className={classes.App}>
-            <Toolbar showNavbar={this.showNavbarHandler} activeNavbar={this.state.showNavbar}/>
+            <Toolbar
+              showNavbar={this.showNavbarHandler}
+              activeNavbar={this.state.showNavbar}
+            />
             <div className={classes.AppBody}>
-              <Navbar open={this.state.showNavbar} />
-              <div className={classes.AppContent}>
-                {this.props.children}
-              </div>
+              <Navbar
+                open={this.state.showNavbar}
+                userName={this.props.userInformation.nick}
+              />
+              <div className={classes.AppContent}>{this.props.children}</div>
             </div>
           </div>
         </main>

@@ -49,9 +49,7 @@ class UserProfile extends Component {
     axios
       .get("/user/" + username, config)
       .then(res => {
-        console.log(res.data);
         const data = res.data;
-
         this.setState({
           loading: false,
           status: data.status,

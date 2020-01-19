@@ -14,7 +14,7 @@ import classes from "./FishingTrips.module.css";
 
 class FishingTrips extends Component {
   state = {
-    loading: false,
+    loading: true,
     fishingTrips: []
   };
 
@@ -29,15 +29,11 @@ class FishingTrips extends Component {
   // }
 
   loadFishingTripData = () => {
-    let config = {
+    const config = {
       headers: {
         Authorization: this.props.tokenType + " " + this.props.token
       }
     };
-
-    this.setState({
-      loading: true
-    });
 
     axios
       .get("/trip", config)
@@ -64,6 +60,28 @@ class FishingTrips extends Component {
     this.props.history.push("/trips/" + id);
   };
 
+  createFishingTripPostHandler = fishingTripData => {
+    const config = {
+      headers: {
+        Authorization: this.props.tokenType + " " + this.props.token
+      }
+    };
+
+    const data = {
+      fishingTrip: fishingTripData
+    };
+
+    axios
+      .post("/post", data, config)
+      .then(res => {
+        console.log("accept FishingTrips createFishingTripPostHandler");
+        this.loadFishingTripData();
+      })
+      .catch(err => {
+        console.log("error FishingTrips createFishingTripPostHandler");
+      });
+  };
+
   render() {
     let content = <Loading />;
 
@@ -73,9 +91,10 @@ class FishingTrips extends Component {
           {this.state.fishingTrips.map(trip => (
             <FishingTripCard
               key={trip.id}
-              data={trip}
+              fishingTripData={trip}
               onEdit={() => this.editTripHandler(trip.id)}
               onShow={() => this.fishingTripSelectHandler(trip.id)}
+              onShare={() => this.createFishingTripPostHandler(trip)}
             />
           ))}
         </div>
